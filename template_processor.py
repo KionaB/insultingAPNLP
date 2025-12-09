@@ -37,11 +37,6 @@ def get_insult_from_template(first_insult:str):
     return template, subject, insult_scale, comparator
 
 
-def get_worse_comparator(comparator:str, scale=None):
-    worse_comparator = " "
-    return worse_comparator
-
-
 def comeback_builder_from_template(first_insult:str, template:int, subject:str, worse_comparator:str, insult_scale=" "):
     """Generates a return insult based on one of these templates:
      0: [X] are/is as [Y] as a [Z]
