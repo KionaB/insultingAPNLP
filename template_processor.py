@@ -18,6 +18,9 @@ def get_insult_from_template(first_insult:str):
     template_1 = r"( are a | is a | are an | is an )"
     one_compiled = re.compile(template_1)
     insult_scale = None
+    variables = []
+    subject = ""
+    comparator = ""
     if zero_compiled.search(first_insult):
         template = 0
         pt1 = re.sub(zero_compiled, "|", first_insult)
