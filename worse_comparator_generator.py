@@ -13,19 +13,23 @@ from nltk.corpus import wordnet
 model = SentenceTransformer("all-mpnet-base-v2")
 logger = logging.getLogger(__name__)
 
-def get_worse_comparator(comparator:str, scale=None):
+
+def get_worse_comparator(comparator: str, scale=None):
     """Gets a comparator and optional scale to compare on, generates a stronger comparator
     @:arg str comparator: the comparator to outdo
     @:arg str scale: the scale to outdo comparator on, optional, if not provided function will return a more negative word
     @:returns str worse_comparator: a more negative comparator or the worse comparator on the scale"""
     worse_comparator = " "
-    if scale==None:
+    if scale is None:
         worse_comparator = get_multiple_anchor_comparator(comparator, "terrible")
     else:
         worse_comparator = get_multiple_anchor_comparator(comparator, scale)
     return worse_comparator
 
-def get_scale_syns_and_opposites(scale:str):
+
+# TODO add PCA stuff
+
+def get_scale_syns_and_opposites(scale: str):
     """Gets a scale and returns a list of synonyms and a list of antonyms
     @:arg str scale: the scale to get synonyms and antonyms of
     @returns list of synonyms and list of antonyms"""
@@ -39,10 +43,14 @@ def get_scale_syns_and_opposites(scale:str):
                 antonyms.append(l.antonyms()[0].name())
     return synonyms, antonyms
 
+
+# TODO make list option for words
+
 def get_close(word):
     """Gets a list of nearby words
     @arg str word: the word to get synonyms for
     @returns list of nearby words"""
+    # TODO limit options to nouns?
     syns = wordnet.synsets(word)
     synonyms = []
     hypers = []
@@ -51,45 +59,50 @@ def get_close(word):
             synonyms.append(l.name())
         hypers.append(syn.hypernyms())
     moresyns = []
+    print("finding hypernyms")
     for h in hypers:
         for l in h:
+            print(l.name)
             moresyns.append(l.name())
             for o in l.hyponyms():
                 moresyns.append(o.name())
+                # TODO filter out toxic words
     synonyms += moresyns
     return synonyms
 
-def get_multiple_anchor_comparator(comparator:str,scale:str):
+
+def get_multiple_anchor_comparator(comparator: str, scale: str):
     """Gets comparator and scale, then uses Multiple_word_anchor.ipynb's method to generate a worse comparator based on synonyms and antonyms from nltk"""
-    syns,ants = get_scale_syns_and_opposites(scale)
+    syns, ants = get_scale_syns_and_opposites(scale)
     words_for_comparator = get_close(comparator)
-    if ants == []:
-        #emergency antonyms
+    if not ants:
+        # emergency antonyms
         ants.append("amazing")
         ants.append("cool")
-        ants.append("cute")
+        # ants.append("cute")
         ants.append("smart")
-    comparator_list =make_scale_list(list(set(syns)), list(set(ants)), list(set(words_for_comparator)))
+    comparator_list = make_scale_list(list(set(syns)), list(set(ants)), list(set(words_for_comparator)))
     result = comparator_list[0]
     print(result)
     if ".0" in result:
-        #filter out the wordnet variables to get just the word
-        result=result.replace(".n.", "")
+        # filter out the wordnet variables to get just the word
+        result = result.replace(".n.", "")
         result = result.replace(".v.", "")
         result = result.replace(".a.", "")
         result = result.replace(".s.", "")
         result = result.replace(".r.", "")
-        result =re.sub(re.compile(r"[0-9]"), "",result)
+        result = re.sub(re.compile(r"[0-9]"), "", result)
         print(result)
-    return re.sub("_", " ",result ) #add in spaces
+    return re.sub("_", " ", result)  # add in spaces
 
-## MULTIPLE_WORD_ANCHOR methods
+
+# MULTIPLE_WORD_ANCHOR methods
 # This combines multiple similar words into a single word anchor to remove noise
 def encode_anchor(words):
-    logger.info('Encoding anchor words'+str(words))
+    logger.info('Encoding anchor words' + str(words))
     vecs = model.encode(words)
     vecs = normalize(vecs)
-    mean_vec = np.mean(vecs, axis = 0)
+    mean_vec = np.mean(vecs, axis=0)
     mean_vec = mean_vec / np.linalg.norm(mean_vec)
     return mean_vec
 

@@ -9,15 +9,21 @@ logging.basicConfig(filename='insult_generator.log', level=logging.INFO)
 if __name__ == "__main__":
     nltk.download('wordnet')
     # prompt input
-    #TODO input sanitation
+    # TODO input sanitation
+    # TODO add escalating against self option for testing (report eval)
+    # TODO add choosing worse comparator method
+    # TODO add error handling stuff
     while True:
-        first_insult = input("Insult me, I dare you \nTemplates: \n{[X] are/is as [Y] as a [Z]} \n{[X] are/is a [Y]} "
+        first_insult = input("Insult me, I dare you "
+                             "\nTemplates: "
+                             "\n{[X] are/is as [Y] as a [Z]} "
+                             "\n{[X] are/is a [Y]} "
                              "\nOR type \"exit\" to exit\n")
         if "exit" == first_insult.lower().strip():
             break
         print("Your insult:", first_insult)
         template, subject, insult_scale, comparator = get_insult_from_template(first_insult)
         worse_comparator = worse_gen.get_worse_comparator(comparator, insult_scale)
-        logger.info("Increased step comparator: "+worse_comparator)
-        comeback= comeback_builder_from_template(first_insult, template, subject, worse_comparator, insult_scale)
+        logger.info("Increased step comparator: " + worse_comparator)
+        comeback = comeback_builder_from_template(first_insult, template, subject, worse_comparator, insult_scale)
         print(comeback)
