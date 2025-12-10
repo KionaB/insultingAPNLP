@@ -15,31 +15,25 @@ def get_insult_from_template(first_insult: str):
       str comparator: what the subject is compared to
      """
     # Set templates
-    template = 1
-    template_0 = r"( are as | is as )"
-    zero_compiled = re.compile(template_0)
-    template_1 = r"( are a | is a | are an | is an )"
-    one_compiled = re.compile(template_1)
+    zero_compiled = re.compile(r"^(?P<subject>.+?) (are|is) as (?P<insult_scale>.+?) as (a|an) (?P<comparator>.+)$", re.IGNORECASE)
+    one_compiled = re.compile(r"^(?P<subject>.+?) (are|is) (a|an) (?P<comparator>.+)$", re.IGNORECASE)
+    template = None
     insult_scale = None
-    variables = []
     subject = ""
     comparator = ""
+    match0 = zero_compiled.match(first_insult)
+    match1 = one_compiled.match(first_insult)
     if zero_compiled.search(first_insult):
         template = 0
-        pt1 = re.sub(zero_compiled, "|", first_insult)
-        template_second = r"( as a | as an )"
-        second_compiled = re.compile(template_second)
-        variables = re.sub(second_compiled, "|", pt1).split("|")
-        subject = variables[0]
-        insult_scale = variables[1]
-        comparator = variables[2]
+        subject = match0.group("subject").strip()
+        insult_scale = match0.group("insult_scale").strip()
+        comparator = match0.group("comparator").strip()
     elif one_compiled.search(first_insult):
-        variables = re.sub(one_compiled, "|", first_insult).split("|")
-        subject = variables[0]
-        comparator = variables[1]
+        template = 1
+        subject = match1.group("subject").strip()
+        comparator = match1.group("comparator").strip()
 
-    logger.info("Detected variables: " + str(variables))
-    logger.info("Detected template: " + str(template))
+    logger.info(f"Detected variables: template = {template}, subject = {subject}, scale = {insult_scale}, comparator = {comparator}")
     return template, subject, insult_scale, comparator
 
 
@@ -57,7 +51,7 @@ def comeback_builder_from_template(first_insult: str, template: int, subject: st
      """
     # Builds a comeback out of the given variables based on template first insult used
 
-    comeback = "Comeback: " + subject
+    comeback = subject
     if template == 0:
         if " is as " in first_insult:
             comeback = comeback + " is as " + insult_scale

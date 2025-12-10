@@ -1,14 +1,14 @@
 import logging
 import re
-
-import tabulate
-import sentence_transformers
+import os
+os.environ["USE_TF"] = "0"
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 import numpy as np
-import nltk
 from sentence_transformers import SentenceTransformer
 from tabulate import tabulate
 from sklearn.preprocessing import normalize
 from nltk.corpus import wordnet
+import random
 
 model = SentenceTransformer("all-mpnet-base-v2")
 logger = logging.getLogger(__name__)
@@ -51,6 +51,7 @@ def get_close(word):
     @arg str word: the word to get synonyms for
     @returns list of nearby words"""
     # TODO limit options to nouns?
+    word = word.replace(" ", "_")
     syns = wordnet.synsets(word)
     synonyms = []
     hypers = []
@@ -59,10 +60,10 @@ def get_close(word):
             synonyms.append(l.name())
         hypers.append(syn.hypernyms())
     moresyns = []
-    print("finding hypernyms")
+    # print("finding hypernyms")
     for h in hypers:
         for l in h:
-            print(l.name)
+            # print(l.name)
             moresyns.append(l.name())
             for o in l.hyponyms():
                 moresyns.append(o.name())
@@ -82,17 +83,15 @@ def get_multiple_anchor_comparator(comparator: str, scale: str):
         # ants.append("cute")
         ants.append("smart")
     comparator_list = make_scale_list(list(set(syns)), list(set(ants)), list(set(words_for_comparator)))
-    result = comparator_list[0]
-    print(result)
+    index = random.randint(0, len(comparator_list)-1)
+    result = comparator_list[index]
+    # print(result)
     if ".0" in result:
         # filter out the wordnet variables to get just the word
-        result = result.replace(".n.", "")
-        result = result.replace(".v.", "")
-        result = result.replace(".a.", "")
-        result = result.replace(".s.", "")
-        result = result.replace(".r.", "")
+        for var in [".n.", ".v.", ".a.", ".s.", ".r."]:
+            result = result.replace(var, "")
         result = re.sub(re.compile(r"[0-9]"), "", result)
-        print(result)
+        # print(result)
     return re.sub("_", " ", result)  # add in spaces
 
 
@@ -100,7 +99,7 @@ def get_multiple_anchor_comparator(comparator: str, scale: str):
 # This combines multiple similar words into a single word anchor to remove noise
 def encode_anchor(words):
     logger.info('Encoding anchor words' + str(words))
-    vecs = model.encode(words)
+    vecs = model.encode(words, show_progress_bar=False)
     vecs = normalize(vecs)
     mean_vec = np.mean(vecs, axis=0)
     mean_vec = mean_vec / np.linalg.norm(mean_vec)
@@ -113,7 +112,6 @@ def proj_meas(v1, v2, v3):
     w = v3 - v1
     proj = np.dot(w, v) / np.dot(v, v) * v
     d = np.linalg.norm(w - proj)
-
     t = np.dot(w, v) / np.dot(v, v)  # t is how far along on the spectrum something is, 0.0 for v1, 1.0 for v2.
     proj_point = v1 + t * v
     return d, proj_point, t
@@ -127,7 +125,7 @@ def make_scale_list(words1, words2, word_list):
     vec2 = encode_anchor(words2)
 
     for word in word_list:
-        deter = model.encode(word)
+        deter = model.encode(word, show_progress_bar=False)
         deter = deter / np.linalg.norm(deter)
 
         d, proj, t = proj_meas(vec1, vec2, deter)
@@ -135,7 +133,6 @@ def make_scale_list(words1, words2, word_list):
         dist_scores.append(d)
 
     scores, words, dists = zip(*sorted(zip(scale_scores, word_list, dist_scores)))
-    # normed_scores = (scores-min(scores))/(max(scores)-min(scores))
     normed_dists = 1 - (dists - min(dists)) / (max(dists) - min(dists))  # Normalized makes a bit more sense here
     # Build table
     table = []
@@ -143,6 +140,6 @@ def make_scale_list(words1, words2, word_list):
         table.append([word, f"{score:.3f}", f"{dist:.3f}", f"{nor_dist:.3f}"])
 
     headers = ["Word", "t (scale)", "Distance", "Normalized Distance"]
-    print('From ', words1, ' to ', words2, ':')
-    print(tabulate(table, headers=headers, tablefmt="fancy_grid"))
+    # print('From ', words1, ' to ', words2, ':')
+    # print(tabulate(table, headers=headers, tablefmt="fancy_grid"))
     return words
