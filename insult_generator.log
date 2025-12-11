@@ -1,0 +1,33 @@
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = dumb, comparator = aligator
+INFO:worse_comparator_generator:Encoding anchor words['kind', 'gentle', 'friendly', 'nice']
+INFO:worse_comparator_generator:Encoding anchor words['aggressive', 'hostile', 'angry', 'mean']
+INFO:template_processor:Detected variables: template = 0, subject = you, scale = dumb, comparator = donkey
+INFO:worse_comparator_generator:Encoding anchor words['nice', 'friendly', 'kind', 'gentle']
+INFO:worse_comparator_generator:Encoding anchor words['aggressive', 'mean', 'hostile', 'angry']
+INFO:__main__:Increased step comparator: national flag
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = dumb, comparator = donkey
+INFO:worse_comparator_generator:Encoding anchor words['gentle', 'nice', 'kind', 'friendly']
+INFO:worse_comparator_generator:Encoding anchor words['aggressive', 'mean', 'hostile', 'angry']
+INFO:__main__:Increased step comparator: swastika
+INFO:template_processor:Detected variables: template = None, subject = , scale = None, comparator = 
+INFO:worse_comparator_generator:Encoding anchor words['gentle', 'nice', 'kind', 'friendly']
+INFO:worse_comparator_generator:Encoding anchor words['aggressive', 'mean', 'hostile', 'angry']
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = dumb, comparator = donkey
+INFO:worse_comparator_generator:Encoding anchor words['nice', 'gentle', 'kind', 'friendly']
+INFO:worse_comparator_generator:Encoding anchor words['hostile', 'angry', 'mean', 'aggressive']
+INFO:__main__:Increased step comparator: deer
+INFO:worse_comparator_generator:Encoding anchor words['favorable', 'friendly', 'well-disposed']
+INFO:worse_comparator_generator:Encoding anchor words['hostile', 'unfriendly']
+INFO:worse_comparator_generator:Encoding anchor words['speechless', 'mute', 'slow', 'dim', 'dumb', 'dull', 'silent', 'dense', 'obtuse']
+INFO:worse_comparator_generator:Encoding anchor words['amazing', 'cool', 'smart']
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = dumb, comparator = donkey
+INFO:__main__:Increased step comparator: swastika
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = dumb, comparator = donkey
+INFO:__main__:Increased step comparator: spread eagle
+INFO:template_processor:Detected variables: template = 0, subject = you, scale = dumb, comparator = donkey
+INFO:__main__:Increased step comparator: jack.n.12
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = dumb, comparator = penis
+INFO:__main__:Increased step comparator: member
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = dumb, comparator = calculator
+INFO:__main__:Increased step comparator: computer expert
+INFO:template_processor:Detected variables: template = None, subject = , scale = None, comparator = 

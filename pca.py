@@ -24,24 +24,7 @@ animals = [
     "fox", "deer", "owl", "cow", "chicken", "goat",
     "pig", "parrot", "rat", "snake",
     "bat", "vulture", "shark", "maggot", "worm", "hyena",
-    # "lion", "tiger", "leopard", "cheetah", "jaguar", "elephant", "rhino",
-    # "hippopotamus", "giraffe", "zebra", "kangaroo", "koala", "platypus",
-    # "seal", "walrus", "beaver", "moose", "elk", "reindeer",
-    # "penguin", "albatross", "seagull", "flamingo", "swan", "duck", "goose",
-    # "turkey", "peacock", "toucan", "hummingbird", "woodpecker", "crow",
-    # "raven", "sparrow", "finch", "canary", "owl", "eagle", "hawk",
-    # "falcon", "condor", "parakeet", "macaw", "chameleon", "gecko", "iguana",
-    # "turtle", "tortoise", "frog", "toad", "salamander", "newt", "crocodile",
-    # "alligator", "lizard", "python", "cobra", "viper", "anaconda",
-    # "centipede", "millipede", "bee", "wasp", "ant", "butterfly", "moth",
-    # "dragonfly", "ladybug", "grasshopper", "lobster", "crab",
-    # "shrimp", "octopus", "squid", "jellyfish", "starfish", "clam", "oyster",
-    # "snail", "slug", "earthworm", "leeches", "mongoose", "weasel", "otter",
-    # "badger", "skunk", "porcupine", "armadillo", "hedgehog", "rabbit",
-    # "hare", "mouse", "voles", "chipmunk", "squirrel", "beetle",
-    # "spider", "tarantula", "scorpion", "cricket", "cockroach"
 ]
-
 
 # semantic axis of synonyms en antonyms
 synonyms = ["friendly", "kind", "gentle", "nice"]
@@ -61,13 +44,11 @@ animal_vecs = normalize(animal_vecs)
 # Maak de PCA axis and return de direction vector, anchor mean, en hash scale.
 def build_pca_axis(pos_words, neg_words, model):
     # Maak een unieke 'fingerafdruk' van je input om te zien of de semantic scale verandert
-    # Dit kan ook een simpele check zijn of het semantic scale woord zelf veranderdt,
-    # maar ik weet niet hoe synoiemen en antoniemen worden gemaakt op het moment (dit werkt sowieso)
     scale_hash = hash(tuple(pos_words) + tuple(neg_words))
 
     # Encode synonyms/antonyms woorden
-    pos_vecs = normalize(model.encode(pos_words, convert_to_numpy=True, device=device))
-    neg_vecs = normalize(model.encode(neg_words, convert_to_numpy=True, device=device))
+    pos_vecs = model.encode(pos_words, convert_to_numpy=True, device=device)
+    neg_vecs = model.encode(neg_words, convert_to_numpy=True, device=device)
 
     # Stack de twee matrixen op elkaar
     X = np.vstack([pos_vecs, neg_vecs])
