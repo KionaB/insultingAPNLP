@@ -87,7 +87,6 @@ def get_close(word):
                 for p in o.lemmas():
                     moresyns.append(p.name())
     synonyms += moresyns
-    print(word)
     # add in the spaces
     synonyms = [re.sub("_", " ", x) for x in synonyms]
     # filter out toxic and original word
