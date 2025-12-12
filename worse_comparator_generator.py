@@ -99,6 +99,7 @@ def get_multiple_anchor_comparator(comparator: str, scale: str):
     syns, ants = get_scale_syns_and_opposites(scale)
     words_for_comparator = get_close(comparator)
     if not ants:
+        logger.warn('No antonyms found for scale ' + str(scale))
         # emergency antonyms
         ants.append("amazing")
         ants.append("cool")
@@ -106,7 +107,7 @@ def get_multiple_anchor_comparator(comparator: str, scale: str):
         ants.append("smart")
     comparator_list = make_scale_list(list(set(syns)), list(set(ants)), list(set(words_for_comparator)))
     result = comparator_list[0]
-    print(result)
+    logger.info('Worse comparator ' + str(result)+' for scale '+str(scale)+' with original comparator '+str(comparator))
     return result
 
 
