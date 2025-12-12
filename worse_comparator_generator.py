@@ -13,6 +13,24 @@ from nltk.corpus import wordnet
 model = SentenceTransformer("all-mpnet-base-v2")
 logger = logging.getLogger(__name__)
 
+#TODO expand
+toxic = ["retard", "homosexual","nazi","bitch","whore","slut",
+         "swastika","Hakenkreuz","Star of David","Shield of David",
+         "Solomon's seal","Paschal Lamb","Mogen David","Magen David",
+         "Agnus Dei","hammer and sickle","color-blind person",
+         "White person","simpleton","segregate","cross-dresser",
+         "weight gainer","wuss","Caucasian","religious person",
+         "pussycat","drug user","Israelite","Native American","jerk",
+         "nonreligious person","visually impaired person","homo",
+         "person of color","transsexual","gay","mollycoddler",
+         "homophile","mixed-blood","Black person","masturbator",
+         "sex symbol","person of colour","mestizo","Black","Jew",
+         "transexual","heterosexual","pansexual","heterosexual person",
+         "ethnic","Slav","Amerindian","handicapped person","Hebrew",
+         "substance abuser","transvestite","deaf person","Negroid",
+         "Negro","baby buster","primitive person","aborigine","sex object",
+         "aboriginal","African","misogamist","blackamoor","anti-American",
+         "dyslectic"]
 
 def get_worse_comparator(comparator: str, scale=None):
     """Gets a comparator and optional scale to compare on, generates a stronger comparator
@@ -50,8 +68,8 @@ def get_close(word):
     """Gets a list of nearby words
     @arg str word: the word to get synonyms for
     @returns list of nearby words"""
-    # TODO limit options to nouns?
-    syns = wordnet.synsets(word)
+    #get all the synsets that are nouns
+    syns = wordnet.synsets(word,pos='n')
     synonyms = []
     hypers = []
     for syn in syns:
@@ -59,15 +77,20 @@ def get_close(word):
             synonyms.append(l.name())
         hypers.append(syn.hypernyms())
     moresyns = []
-    print("finding hypernyms")
     for h in hypers:
         for l in h:
-            print(l.name)
-            moresyns.append(l.name())
+            for lems in l.lemmas():
+                moresyns.append(lems.name())
             for o in l.hyponyms():
-                moresyns.append(o.name())
+                for p in o.lemmas():
+                    moresyns.append(p.name())
                 # TODO filter out toxic words
     synonyms += moresyns
+    print(word)
+    # add in the spaces
+    synonyms = [re.sub("_", " ", x) for x in synonyms]
+    # filter out toxic and original word
+    synonyms = [x for x in synonyms if (x!=word) and (x not in toxic)]
     return synonyms
 
 
@@ -84,16 +107,16 @@ def get_multiple_anchor_comparator(comparator: str, scale: str):
     comparator_list = make_scale_list(list(set(syns)), list(set(ants)), list(set(words_for_comparator)))
     result = comparator_list[0]
     print(result)
-    if ".0" in result:
-        # filter out the wordnet variables to get just the word
-        result = result.replace(".n.", "")
-        result = result.replace(".v.", "")
-        result = result.replace(".a.", "")
-        result = result.replace(".s.", "")
-        result = result.replace(".r.", "")
-        result = re.sub(re.compile(r"[0-9]"), "", result)
-        print(result)
-    return re.sub("_", " ", result)  # add in spaces
+    # if ".0" in result:
+    #     # filter out the wordnet variables to get just the word
+    #     result = result.replace(".n.", "")
+    #     result = result.replace(".v.", "")
+    #     result = result.replace(".a.", "")
+    #     result = result.replace(".s.", "")
+    #     result = result.replace(".r.", "")
+    #     result = re.sub(re.compile(r"[0-9]"), "", result)
+    #     print(result)
+    return result
 
 
 # MULTIPLE_WORD_ANCHOR methods
