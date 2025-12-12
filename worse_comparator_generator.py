@@ -6,6 +6,7 @@ import sentence_transformers
 import numpy as np
 import nltk
 from sentence_transformers import SentenceTransformer
+from transformers.utils.logging import disable_progress_bar
 from tabulate import tabulate
 from sklearn.preprocessing import normalize
 from nltk.corpus import wordnet
@@ -38,6 +39,7 @@ def get_worse_comparator(comparator: str, scale=None):
     @:arg str scale: the scale to outdo comparator on, optional, if not provided function will return a more negative word
     @:returns str worse_comparator: a more negative comparator or the worse comparator on the scale"""
     worse_comparator = " "
+    disable_progress_bar()
     if scale is None:
         worse_comparator = get_multiple_anchor_comparator(comparator, "terrible")
     else:
@@ -113,7 +115,7 @@ def get_multiple_anchor_comparator(comparator: str, scale: str):
 # This combines multiple similar words into a single word anchor to remove noise
 def encode_anchor(words):
     logger.info('Encoding anchor words' + str(words))
-    vecs = model.encode(words)
+    vecs = model.encode(words,show_progress_bar=False)
     vecs = normalize(vecs)
     mean_vec = np.mean(vecs, axis=0)
     mean_vec = mean_vec / np.linalg.norm(mean_vec)
@@ -140,7 +142,7 @@ def make_scale_list(words1, words2, word_list):
     vec2 = encode_anchor(words2)
 
     for word in word_list:
-        deter = model.encode(word)
+        deter = model.encode(word,show_progress_bar=False)
         deter = deter / np.linalg.norm(deter)
 
         d, proj, t = proj_meas(vec1, vec2, deter)

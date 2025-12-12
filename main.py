@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(filename='insult_generator.log', level=logging.INFO)
 
 if __name__ == "__main__":
-    nltk.download('wordnet')
+    nltk.download('wordnet',quiet=True)
     # prompt input
     # TODO input sanitation
     # TODO add escalating against self option for testing (report eval)
