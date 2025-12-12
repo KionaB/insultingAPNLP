@@ -84,7 +84,6 @@ def get_close(word):
             for o in l.hyponyms():
                 for p in o.lemmas():
                     moresyns.append(p.name())
-                # TODO filter out toxic words
     synonyms += moresyns
     print(word)
     # add in the spaces
@@ -107,15 +106,6 @@ def get_multiple_anchor_comparator(comparator: str, scale: str):
     comparator_list = make_scale_list(list(set(syns)), list(set(ants)), list(set(words_for_comparator)))
     result = comparator_list[0]
     print(result)
-    # if ".0" in result:
-    #     # filter out the wordnet variables to get just the word
-    #     result = result.replace(".n.", "")
-    #     result = result.replace(".v.", "")
-    #     result = result.replace(".a.", "")
-    #     result = result.replace(".s.", "")
-    #     result = result.replace(".r.", "")
-    #     result = re.sub(re.compile(r"[0-9]"), "", result)
-    #     print(result)
     return result
 
 
