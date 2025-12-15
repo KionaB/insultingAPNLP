@@ -11,8 +11,15 @@ if __name__ == "__main__":
     # prompt input
     # TODO input sanitation
     # TODO add escalating against self option for testing (report eval)
-    # TODO add choosing worse comparator method
+
     # TODO add error handling stuff
+
+    # TODO add choosing worse comparator method
+    # mode = input("select a mode: "
+    #              "\n [1] "
+    #              "\n [2] "
+    #              "\n [3] ")
+
     while True:
         first_insult = input("Insult me, I dare you "
                              "\nTemplates: "

@@ -1,6 +1,5 @@
 import logging
 import re
-
 import tabulate
 import sentence_transformers
 import numpy as np
