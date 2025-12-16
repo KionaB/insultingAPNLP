@@ -31,3 +31,31 @@ INFO:__main__:Increased step comparator: member
 INFO:template_processor:Detected variables: template = 0, subject = You, scale = dumb, comparator = calculator
 INFO:__main__:Increased step comparator: computer expert
 INFO:template_processor:Detected variables: template = None, subject = , scale = None, comparator = 
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = dumb, comparator = ape
+INFO:template_processor:Detected variables: template = 0, subject = you, scale = dumb, comparator = donkey
+WARNING:worse_comparator_generator:No antonyms found for scale dumb
+INFO:__main__:Increased step comparator: wild ass
+INFO:template_processor:Detected variables: template = 0, subject = you, scale = ugly, comparator = pig
+INFO:__main__:Increased step comparator: mould
+INFO:template_processor:Detected variables: template = 0, subject = you, scale = smelly, comparator = pig
+WARNING:worse_comparator_generator:No antonyms found for scale smelly
+INFO:__main__:Increased step comparator: detective
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = annoying, comparator = kitten
+WARNING:worse_comparator_generator:No antonyms found for scale annoying
+INFO:__main__:Increased step comparator: kitty
+INFO:template_processor:Detected variables: template = 0, subject = you, scale = light, comparator = feather
+INFO:__main__:Increased step comparator: pivot
+INFO:template_processor:Detected variables: template = None, subject = , scale = None, comparator = 
+WARNING:worse_comparator_generator:No antonyms found for scale terrible
+INFO:template_processor:Detected variables: template = None, subject = , scale = None, comparator = 
+WARNING:worse_comparator_generator:No antonyms found for scale terrible
+INFO:template_processor:Detected variables: template = 0, subject = you, scale = stupid, comparator = donkey
+INFO:__main__:Increased step comparator: cupid
+INFO:template_processor:Detected variables: template = 1, subject = you, scale = None, comparator = idiot
+WARNING:worse_comparator_generator:No antonyms found for scale terrible
+INFO:__main__:Increased step comparator: changeling
+INFO:template_processor:Detected variables: template = 1, subject = you, scale = None, comparator = moron
+WARNING:worse_comparator_generator:No antonyms found for scale terrible
+INFO:__main__:Increased step comparator: changeling
+INFO:template_processor:Detected variables: template = 1, subject = you, scale = None, comparator = slow person
+WARNING:worse_comparator_generator:No antonyms found for scale terrible

@@ -20,7 +20,8 @@ def generate_comeback(insult):
     return comeback
 
 if __name__ == "__main__":
-    nltk.download('wordnet')
+    nltk.download('wordnet',quiet=True)
+    # prompt input
     # TODO input sanitation
     # TODO add error handling stuff
     print(
