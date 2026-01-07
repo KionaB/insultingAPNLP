@@ -53,6 +53,8 @@ evaluation = True  # Turn on for evaluation mode to get top 5 words for differen
 def generate_comeback(insult):
     """generate a comeback for any given insult"""
     template, subject, insult_scale, comparator = get_insult_from_template(insult)
+    if insult_scale is None:
+        insult_scale = "terrible"
     syns, ants, ants_found = get_scale_syns_and_opposites(insult_scale)
     if not ants_found:
         logger.warning('No antonyms found for scale ' + str(insult_scale))
