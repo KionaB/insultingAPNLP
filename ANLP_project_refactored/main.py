@@ -1,3 +1,4 @@
+print('file started')
 import logging
 
 from pick_insult import pick_insult
@@ -7,6 +8,7 @@ from syn_ant_generation import *
 from word_list_gen import *
 import nltk
 
+print('file started2')
 logger = logging.getLogger(__name__)
 logging.basicConfig(filename='insult_generator.log', level=logging.INFO)
 
@@ -20,7 +22,7 @@ def generate_comeback(insult):
     template, subject, insult_scale, comparator = get_insult_from_template(insult)
     if insult_scale is None:
         insult_scale = "terrible"
-    syns, ants, ants_found = get_scale_syns_and_opposites(insult_scale)
+    syns, ants, ants_found = get_scale_syns_and_opposites(insult_scale, 'fasttext') # choose between 'wordnet', 'fasttext' and 'extremes', but extremes does not work with worse_comparator yet
     if not ants_found:
         logger.warn('No antonyms found for scale ' + str(insult_scale))
     words_for_comparator = get_close(comparator)
@@ -31,7 +33,9 @@ def generate_comeback(insult):
     return comeback
 
 if __name__ == "__main__":
+    print('start download')
     nltk.download('wordnet',quiet=True)
+    print('end download')
     # prompt input
     # TODO input sanitation
     # TODO add error handling stuff
