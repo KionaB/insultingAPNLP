@@ -34,7 +34,7 @@ def get_worse_comparator(syns, ants, words_for_comparator, method: bool, pca_met
     @:returns str worse_comparator: a more negative comparator or the worse comparator on the scale"""
     worse_comparator = " "
     disable_progress_bar()
-    print(syns, ants, words_for_comparator, method, pca)
+    # print(syns, ants, words_for_comparator, method, pca)
     if not pca_method:
         worse_comparator, scores = get_multiple_anchor_comparator(syns, ants, words_for_comparator, method)
     else:
@@ -111,7 +111,7 @@ def make_scale_list(words1, words2, word_list):
         table.append([word, f"{score:.3f}", f"{dist:.3f}", f"{nor_dist:.3f}"])
 
     headers = ["Word", "t (scale)", "Distance", "Normalized Distance"]
-    # print('From ', words1, ' to ', words2, ':')
+    print('From ', words1, ' to ', words2, ':')
     # print(tabulate(table, headers=headers, tablefmt="fancy_grid"))
     return words, scores
 
@@ -133,7 +133,7 @@ def build_pca_axis(pos_words, neg_words, model):
     X = np.vstack([pos_vecs, neg_vecs])
 
     # doe de daadwerkelijke PCA berekening waarbij covariance matrx en richting van alle anchors worden berekend.
-    pca = PCA(n_components=1)
+    pca = PCA(n_components=1, svd_solver='auto', whiten=False)
     pca.fit(X)
     axis = pca.components_[0]
     axis /= np.linalg.norm(axis) # zorg opnieuw ervoor dat de PCA vector lengte 1 is.
@@ -195,9 +195,9 @@ def pca(syns, ants, word_list):
 
     # Print nice table
     table = [[w, f"{t:.3f}", f"{d:.3f}"] for (w, t, d) in results]
-    print(tabulate(table,
-                   headers=["Word", "t (PC1 position)", "Orthogonal distance"],
-                   tablefmt="fancy_grid"))
+    # print(tabulate(table,
+    #                headers=["Word", "t (PC1 position)", "Orthogonal distance"],
+    #                tablefmt="fancy_grid"))
 
     # Return only the sorted word list
     sorted_words = [w for (w, _, _) in results]
