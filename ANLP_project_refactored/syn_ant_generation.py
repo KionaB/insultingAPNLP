@@ -4,7 +4,7 @@ import fasttext.util
 import numpy as np
 import faiss
 
-def get_scale_syns_and_opposites(scale: str, mode: str):
+def get_scale_syns_and_opposites(scale: str, mode='wordnet'):
     """Gets a scale and returns a list of synonyms and a list of antonyms
     @:arg str scale: the scale to get synonyms and antonyms of
     @returns list of synonyms and list of antonyms"""
@@ -92,4 +92,4 @@ def get_scale_syns_and_opposites(scale: str, mode: str):
         # clean_pos = dedupe_word_list_strong(pos_end, model)
         return neg_end, pos_end, found
     else:
-        raise Exception("Mode must be 'wordnet', 'fasttext', or 'extremes'")
+        raise Exception("your mode was: ", mode, ".Mode must be 'wordnet', 'fasttext', or 'extremes'")
