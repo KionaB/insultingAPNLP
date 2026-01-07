@@ -1,26 +1,61 @@
 import logging
 
-from pick_insult import pick_insult
+from pick_insult import pick_insult, pick_eval_insult
 from template_processor import get_insult_from_template, comeback_builder_from_template
 from worse_comparator_generator import get_worse_comparator, get_multiple_anchor_comparator
 from syn_ant_generation import *
 from word_list_gen import *
+from tabulate import tabulate
 import nltk
+import textwrap
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(filename='insult_generator.log', level=logging.INFO)
 
+#TODO: remove words ending on -ness and those that are similar to the insult, etc
+
+#TODO: criteria on perplexity / commoness --> r/Roastme
+#TODO: Automatisch invullen en loggen voor evaluatie
+#TODO: runtime toevoegen
+
+def compact_list(words, k=5):
+    """Deduplicate and keep at most k words."""
+    seen = []
+    for w in words:
+        if w not in seen:
+            seen.append(w)
+        if len(seen) == k:
+            break
+    return ", ".join(seen)
+
+def wrap_cell(text, width=40):
+    """Wrap long table cells."""
+    return "\n".join(textwrap.wrap(text, width))
+
+
+EVAL_INSULTS = [
+    "You are as dumb as a rock",
+    "You are as ugly as a troll",
+    "You are as lazy as a sloth",
+    "You are as clueless as a child",
+    "You are as slow as a snail",
+    "You are as annoying as a fly",
+    # "You are as boring as paint",
+    "You are as messy as a pig",
+    "You are as arrogant as a king"
+]
 
 self_battle = False  # Let the insult generator fight against itself
 NUM_ROUNDS = 5      # Determine the amount of insults are generated during self battle
-PCA_method = False   # Enable PCA for semantic scale ranking calculation
+PCA_method = True   # Enable PCA for semantic scale ranking calculation
+evaluation = True  # Turn on for evaluation mode to get top 5 words for different insults
 
 def generate_comeback(insult):
     """generate a comeback for any given insult"""
     template, subject, insult_scale, comparator = get_insult_from_template(insult)
     syns, ants, ants_found = get_scale_syns_and_opposites(insult_scale)
     if not ants_found:
-        logger.warn('No antonyms found for scale ' + str(insult_scale))
+        logger.warning('No antonyms found for scale ' + str(insult_scale))
     words_for_comparator = get_close(comparator)
     worse_comparator_words, scores = get_worse_comparator(syns, ants, words_for_comparator, template, pca_method=PCA_method)
     worse_comparator = pick_insult(worse_comparator_words, scores)
@@ -40,9 +75,6 @@ if __name__ == "__main__":
                 "\n{[X] are/is a [Y]} "
                 "\nOR type \"exit\" to exit\n"
                 )
-    
-    # print(get_multiple_anchor_comparator("donkey", "dumb", method=True))  # PCA
-    # print(get_multiple_anchor_comparator("donkey", "dumb", method=False)) # Multi-anchor
 
     if self_battle:
         insult = input(
@@ -52,7 +84,34 @@ if __name__ == "__main__":
             comeback = generate_comeback(insult)
             print(f"Round {num} comeback: {comeback}")
             insult = comeback
-    else:
+    elif evaluation:
+        rows = []
+        for ins in EVAL_INSULTS:
+            print(ins)
+            template, subject, insult_scale, comparator = get_insult_from_template(ins)
+            syns, ants, ants_found = get_scale_syns_and_opposites(insult_scale)
+            if not ants_found:
+                print('No antonyms found for scale ' + str(insult_scale))
+            words_for_comparator = get_close(comparator)
+            worse_comparator_words, scores = get_worse_comparator(syns, ants, words_for_comparator, template, pca_method=PCA_method)
+            eval_word_list = pick_eval_insult(worse_comparator_words, scores, 5)
+            # rows.append([ins, insult_scale, ", ".join(syns), ", ".join(ants), ", ".join(eval_word_list)])
+            rows.append([
+                ins,
+                insult_scale,
+                wrap_cell(compact_list(syns, 5)),
+                wrap_cell(compact_list(ants, 5)),
+                wrap_cell(", ".join(eval_word_list))
+            ])
+        print(
+            tabulate(
+                rows,
+                headers=["Original insult", "Semantic scale", "Synonyms", "Antonyms", "Top-5 worse words"],
+                tablefmt="fancy_grid",
+                colalign=("left", "left", "left", "left", "left")
+            )
+        )
+    else: 
         while True:
             insult = input(
                 "Write an insult: "
