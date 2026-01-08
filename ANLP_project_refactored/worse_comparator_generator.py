@@ -111,7 +111,7 @@ def make_scale_list(words1, words2, word_list):
         table.append([word, f"{score:.3f}", f"{dist:.3f}", f"{nor_dist:.3f}"])
 
     headers = ["Word", "t (scale)", "Distance", "Normalized Distance"]
-    print('From ', words1, ' to ', words2, ':')
+    # print('From ', words1, ' to ', words2, ':')
     # print(tabulate(table, headers=headers, tablefmt="fancy_grid"))
     return words, scores
 
