@@ -1,3 +1,5 @@
+from string import whitespace
+
 print('file started')
 import logging
 
@@ -42,7 +44,6 @@ EVAL_INSULTS = [
     "You are as clueless as a child",
     "You are as slow as a snail",
     "You are as annoying as a fly",
-    # "You are as boring as paint",
     "You are as messy as a pig",
     "You are as arrogant as a king"
 ]
@@ -71,9 +72,32 @@ if __name__ == "__main__":
     print('start download')
     nltk.download('wordnet',quiet=True)
     print('end download')
-    # prompt input
+
     # TODO input sanitation
     # TODO add error handling stuff
+    #Mode selection stuff
+    battle_self_in = input("Do you want to watch the computer battle itself? (y/n)").lower().strip(whitespace)
+    if battle_self_in == "y" or battle_self_in == "yes":
+        print('battling myself')
+        self_battle = True
+    else:
+        self_battle = False
+
+    pca_in = input("PCA? (y/n)").lower().strip(whitespace)
+    if pca_in == "y" or pca_in == "yes":
+        print('pca on')
+        PCA_method = True
+    else:
+        PCA_method = False
+
+    eval_in = input("Are you evaluating? (y/n)").lower().strip(whitespace)
+    if eval_in == "y" or eval_in == "yes":
+        print('evaluating')
+        evaluation = True
+    else:
+        evaluation = False
+
+    # prompt input
     print(
                 "Insult me, I dare you "
                 "\nTemplates: "

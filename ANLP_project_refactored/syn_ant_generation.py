@@ -9,6 +9,7 @@ def get_scale_syns_and_opposites(scale: str, mode='wordnet'):
     @:arg str scale: the scale to get synonyms and antonyms of
     @returns list of synonyms and list of antonyms"""
     def find_syn_ant_soft(scale, num_neighbours=10):
+        fasttext.util.download_model('en', if_exists='ignore')
         model = fasttext.load_model('cc.en.300.bin')
         neighbours = [w for _, w in model.get_nearest_neighbors(scale, num_neighbours)]
         antonyms = []
