@@ -53,12 +53,12 @@ NUM_ROUNDS = 5      # Determine the amount of insults are generated during self 
 PCA_method = True   # Enable PCA for semantic scale ranking calculation
 evaluation = True  # Turn on for evaluation mode to get top 5 words for different insults
 
-def generate_comeback(insult):
+def generate_comeback(insult,mode):
     """generate a comeback for any given insult"""
     template, subject, insult_scale, comparator = get_insult_from_template(insult)
     if insult_scale is None:
         insult_scale = "terrible"
-    syns, ants, ants_found = get_scale_syns_and_opposites(insult_scale, 'fasttext') # choose between 'wordnet', 'fasttext' and 'extremes', but extremes does not work with worse_comparator yet
+    syns, ants, ants_found = get_scale_syns_and_opposites(insult_scale, mode) # choose between 'wordnet', 'fasttext' and 'extremes', but extremes does not work with worse_comparator yet
     if not ants_found:
         logger.warning('No antonyms found for scale ' + str(insult_scale))
     words_for_comparator = get_close(comparator)
@@ -89,64 +89,94 @@ if __name__ == "__main__":
         PCA_method = True
     else:
         PCA_method = False
-
     eval_in = input("Are you evaluating? (y/n)").lower().strip(whitespace)
     if eval_in == "y" or eval_in == "yes":
         print('evaluating')
         evaluation = True
     else:
         evaluation = False
-
+        while True:
+            mode_num = input("Please select a mode: 1 'wordnet', 2 'fasttext', or 3 'extremes'")
+            if mode_num.lower().strip(whitespace) == "1":
+                mode = 'wordnet'
+                break
+            elif mode_num.lower().strip(whitespace) == "2":
+                mode = 'fasttext'
+                break
+            elif mode_num.lower().strip(whitespace) == "3":
+                mode = 'extremes'
+                break
+            elif mode_num.lower().strip(whitespace) == "exit":
+                mode_num = 'exit'
+                self_battle = False
+                evaluation = False
+                break
+            else:
+                print("your mode was: ", mode_num, ".Mode must be '1', '2' or '3'")
     # prompt input
-    print(
+
+
+    if self_battle:
+        print(
+            "Insult me, I dare you "
+            "\nTemplates: "
+            "\n{[X] are/is as [Y] as a [Z]} "
+            "\n{[X] are/is a [Y]} "
+            "\nOR type \"exit\" to exit\n"
+        )
+        insult = input(
+                "Write The first insult: "
+            )
+        for num in range(1, NUM_ROUNDS+1):
+            comeback = generate_comeback(insult,mode)
+            print(f"Round {num} comeback: {comeback}")
+            insult = comeback
+    elif evaluation:
+        rows = []
+        modes = ['wordnet', 'fasttext', 'extremes']
+        print("Evaluating using modes: ",str(modes))
+        print("Using insults: ",str(EVAL_INSULTS))
+        for m in modes:
+            for ins in EVAL_INSULTS:
+                print(ins)
+                template, subject, insult_scale, comparator = get_insult_from_template(ins)
+                syns, ants, ants_found = get_scale_syns_and_opposites(insult_scale,m)
+                if not ants_found:
+                    print('No antonyms found for scale ' + str(insult_scale))
+                words_for_comparator = get_close(comparator)
+                worse_comparator_words, scores = get_worse_comparator(syns, ants, words_for_comparator, template, pca_method=PCA_method)
+                eval_word_list = pick_eval_insult(worse_comparator_words, scores, 5)
+                # rows.append([ins, insult_scale, ", ".join(syns), ", ".join(ants), ", ".join(eval_word_list)])
+                rows.append([
+                    ins,
+                    insult_scale,
+                    wrap_cell(compact_list(syns, 5)),
+                    wrap_cell(compact_list(ants, 5)),
+                    wrap_cell(", ".join(eval_word_list))
+                ])
+            print("Using mode: ", m)
+            print(
+                tabulate(
+                    rows,
+                    headers=["Original insult", "Semantic scale", "Synonyms", "Antonyms", "Top-5 worse words"],
+                    tablefmt="fancy_grid",
+                    colalign=("left", "left", "left", "left", "left")
+                )
+            )
+    else:
+        if mode_num !='exit':
+            print(
                 "Insult me, I dare you "
                 "\nTemplates: "
                 "\n{[X] are/is as [Y] as a [Z]} "
                 "\n{[X] are/is a [Y]} "
                 "\nOR type \"exit\" to exit\n"
+            )
+            while True:
+                insult = input(
+                    "Write an insult: "
                 )
-
-    if self_battle:
-        insult = input(
-                "Write an insult: "
-            )
-        for num in range(1, NUM_ROUNDS+1):
-            comeback = generate_comeback(insult)
-            print(f"Round {num} comeback: {comeback}")
-            insult = comeback
-    elif evaluation:
-        rows = []
-        for ins in EVAL_INSULTS:
-            print(ins)
-            template, subject, insult_scale, comparator = get_insult_from_template(ins)
-            syns, ants, ants_found = get_scale_syns_and_opposites(insult_scale)
-            if not ants_found:
-                print('No antonyms found for scale ' + str(insult_scale))
-            words_for_comparator = get_close(comparator)
-            worse_comparator_words, scores = get_worse_comparator(syns, ants, words_for_comparator, template, pca_method=PCA_method)
-            eval_word_list = pick_eval_insult(worse_comparator_words, scores, 5)
-            # rows.append([ins, insult_scale, ", ".join(syns), ", ".join(ants), ", ".join(eval_word_list)])
-            rows.append([
-                ins,
-                insult_scale,
-                wrap_cell(compact_list(syns, 5)),
-                wrap_cell(compact_list(ants, 5)),
-                wrap_cell(", ".join(eval_word_list))
-            ])
-        print(
-            tabulate(
-                rows,
-                headers=["Original insult", "Semantic scale", "Synonyms", "Antonyms", "Top-5 worse words"],
-                tablefmt="fancy_grid",
-                colalign=("left", "left", "left", "left", "left")
-            )
-        )
-    else: 
-        while True:
-            insult = input(
-                "Write an insult: "
-            )
-            if insult.lower().strip() == "exit":
-                break
-            comeback = generate_comeback(insult)
-            print(comeback)
+                if insult.lower().strip() == "exit":
+                    break
+                comeback = generate_comeback(insult,mode)
+                print(comeback)
