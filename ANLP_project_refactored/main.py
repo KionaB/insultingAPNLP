@@ -1,3 +1,6 @@
+from string import whitespace
+
+print('file started')
 import logging
 
 from pick_insult import pick_insult
@@ -8,6 +11,7 @@ from word_list_gen import *
 from Evaluation import *
 import nltk
 
+print('file started2')
 logger = logging.getLogger(__name__)
 logging.basicConfig(filename='insult_generator.log', level=logging.INFO)
 
@@ -29,7 +33,7 @@ def generate_comeback(insult):
     template, subject, insult_scale, comparator = get_insult_from_template(insult)
     if insult_scale is None:
         insult_scale = "terrible"
-    syns, ants, ants_found = get_scale_syns_and_opposites(insult_scale)
+    syns, ants, ants_found = get_scale_syns_and_opposites(insult_scale, mode) # choose between 'wordnet', 'fasttext' and 'extremes', but extremes does not work with worse_comparator yet
     if not ants_found:
         logger.warning('No antonyms found for scale ' + str(insult_scale))
     words_for_comparator = get_close(comparator)
@@ -40,10 +44,53 @@ def generate_comeback(insult):
     return comeback
 
 if __name__ == "__main__":
+    print('start download')
     nltk.download('wordnet',quiet=True)
-    # prompt input
+    print('end download')
+
     # TODO input sanitation
     # TODO add error handling stuff
+    #Mode selection stuff
+    battle_self_in = input("Do you want to watch the computer battle itself? (y/n)").lower().strip(whitespace)
+    if battle_self_in == "y" or battle_self_in == "yes":
+        print('battling myself')
+        self_battle = True
+    else:
+        self_battle = False
+
+    pca_in = input("Use PCA? (y/n)").lower().strip(whitespace)
+    if pca_in == "y" or pca_in == "yes":
+        print('pca on')
+        PCA_method = True
+    else:
+        PCA_method = False
+
+    eval_in = input("Are you evaluating? (y/n)").lower().strip(whitespace)
+    if eval_in == "y" or eval_in == "yes":
+        print('evaluating')
+        evaluation = True
+    else:
+        evaluation = False
+        while True:
+            mode_num = input("Please select a mode: 1 'wordnet', 2 'fasttext', or 3 'extremes'")
+            if mode_num.lower().strip(whitespace) == "1":
+                mode = 'wordnet'
+                break
+            elif mode_num.lower().strip(whitespace) == "2":
+                mode = 'fasttext'
+                break
+            elif mode_num.lower().strip(whitespace) == "3":
+                mode = 'extremes'
+                break
+            elif mode_num.lower().strip(whitespace) == "exit":
+                mode_num = 'exit'
+                self_battle = False
+                evaluation = False
+                break
+            else:
+                print("your mode was: ", mode_num, ".Mode must be '1', '2' or '3'")
+    # prompt input
+
 
     if evaluation: 
         print('''
@@ -66,18 +113,22 @@ And finally, choosing which word ranked best overall:
             "\n{[X] are/is as [Y] as a [Z]} "
             "\n{[X] are/is a [Y]} "
             "\nOR type \"exit\" to exit\n"
-            )
-    
+        )
+
     if self_battle:
         insult = input(
-                "Write an insult: "
+                "Write The first insult: "
             )
         for num in range(1, NUM_ROUNDS+1):
-            comeback = generate_comeback(insult)
+            comeback = generate_comeback(insult,mode)
             print(f"Round {num} comeback: {comeback}")
             insult = comeback
-    if evaluation:
+    elif evaluation:
         filename, remaining_insults = get_eval_file_and_remaining_insults(model_name)
+        modes = ['wordnet', 'fasttext', 'extremes']
+        print("Evaluating using modes: ",str(modes))
+        print("Using insults: ",str(EVAL_INSULTS))
+        #for m in modes:
         for ins in remaining_insults:
             template, subject, insult_scale, comparator = get_insult_from_template(ins)
             if insult_scale is None:
@@ -90,12 +141,21 @@ And finally, choosing which word ranked best overall:
             print(f"Using evaluation file: {filename}")
             print(f"Remaining insults left to evaluate: {remaining_insults}")
             run_evaluation(ins, insult_scale, model_name, worse_comparator_words, scores, filename)
+
     else: 
+        if mode_num !='exit':
+            print(
+                "Insult me, I dare you "
+                "\nTemplates: "
+                "\n{[X] are/is as [Y] as a [Z]} "
+                "\n{[X] are/is a [Y]} "
+                "\nOR type \"exit\" to exit\n"
+            )
         while True:
             insult = input(
                 "Write an insult: "
             )
             if insult.lower().strip() == "exit":
                 break
-            comeback = generate_comeback(insult)
+            comeback = generate_comeback(insult, mode)
             print(comeback)
