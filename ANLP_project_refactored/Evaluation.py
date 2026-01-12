@@ -2,7 +2,8 @@ from tabulate import tabulate
 from pick_insult import pick_eval_insult
 import textwrap
 import csv
-import random
+import os
+import re
 
 #TODO: criteria on perplexity / commoness --> r/Roastme. use n-gram and/or tf-idf
     # semantic distance
@@ -19,7 +20,18 @@ import random
     # 3. Preference: Which do you like best from the list?
 #TODO: Automatisch invullen en loggen voor evaluatie
 
-fields = ["insult", "scale", "model", "word", "relevance", "Linguistic fit" "severity", "humor", "concrete"]
+fields = ["insult", "scale", "model", "word", "Relevance", "Linguistic_fit", "severity", "humor", "concrete"]
+
+EVAL_INSULTS = [
+    # "You are as dumb as a rock",
+    "You are as ugly as a troll",
+    "You are as lazy as a sloth",
+    # "You are as clueless as a child",
+    "You are as slow as a snail",
+    "You are as annoying as a fly",
+    "You are as messy as a pig",
+    # "You are as arrogant as a king"
+]
 
 def compact_list(words, k=5):
     """Deduplicate and keep at most k words."""
@@ -35,62 +47,115 @@ def wrap_cell(text, width=40):
     """Wrap long table cells."""
     return "\n".join(textwrap.wrap(text, width))
 
-def run_evaluation(ins, insult_scale, syns, ants, PCA_method, worse_comparator_words, scores):
-    with open ("evaluation_log.csv", "w", newline="") as f:
+def get_next_eval_filename(model, prefix="evaluation_log"):
+    """Creates filename if a new csv file must be added with icreased index"""
+    pattern = re.compile(rf"{prefix}(\d+)_{re.escape(model)}\.csv")
+    max_num = 0
+
+    for fname in os.listdir("."):
+        match = pattern.match(fname)
+        if match:
+            max_num = max(max_num, int(match.group(1)))
+
+    return f"{prefix}{max_num + 1}_{model}.csv"
+
+def get_latest_eval_file(model, prefix="evaluation_log"):
+    """Finds the most recent evalation CSV for a model
+    This is important for resuming the latest evaluation instead of starting over"""
+    pattern = re.compile(rf"{prefix}(\d+)_{re.escape(model)}\.csv")
+    files = []
+
+    for fname in os.listdir("."):
+        match = pattern.match(fname)
+        if match:
+            files.append((int(match.group(1)), fname))
+    
+    if not files:
+        return None
+
+    return max(files, key=lambda x: x[0])[1]
+
+def get_evaluated_insults(csv_file):
+    """Determine which insults have already been evaluated in a given CSV file
+    Returns the set of insults that have been covered in the csv file"""
+    evaluated = set()
+
+    with open(csv_file, newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if row["insult"]:
+                evaluated.add(row["insult"])
+
+    return evaluated
+
+def get_eval_file_and_remaining_insults(model):
+    latest_file = get_latest_eval_file(model)
+
+    # No file yet -> start fresh
+    if latest_file is None:
+        new_file = get_next_eval_filename(model)
+        return new_file, EVAL_INSULTS
+    
+    evaluated = get_evaluated_insults(latest_file)
+
+    # evaluation complete? -> start fresh
+    if set(EVAL_INSULTS).issubset(evaluated):
+        new_file = get_next_eval_filename(model)
+        return new_file, EVAL_INSULTS
+    
+    # Otherwise continue from left over insults
+    remaining = [ins for ins in EVAL_INSULTS if ins not in evaluated]
+    return latest_file, remaining
+
+
+def run_evaluation(ins, insult_scale, model_name, worse_comparator_words, scores, filename):
+    file_exists = os.path.exists(filename)
+
+    with open (filename, "a", newline="", encoding='utf-8') as f:
         writer = csv.DictWriter(f, fieldnames=fields)
-        writer.writeheader()
+        if not file_exists:
+            writer.writeheader()
     
         eval_word_list = pick_eval_insult(worse_comparator_words, scores, 5)
+        
+        print("\nCurrent insult: {ins}")
+        print("\nCandidate words:")
+        for i, word in enumerate(eval_word_list, start=1):
+            print(f"{i}. {word}")
 
-        print('''
-            Welcome! This is the Human criteria evaluation model.
-            There are a couple questions for each word that must be ansower on a likert scale from 1-5.
-            First, about how the word fits in the sentence as a whole:
-                1a. Relevance: slow as a snail rather than slow as an apple
-                1b. Linguistic fit: Slow as a snail rather than slow as a deaccelartion
-            Second, the impact of the word itself:
-                2a. perceived severity / insult strength: Dumb as a dead body is harsh, while dumb as a carpet is very tame
-                2b. Humor / cleverness: Dumb as a dead body is rather morbid, while dumb as a carpet is unintentionally funny
-                2c. Concreteness / imagery: does the word evoke a clear mental image? dumb as carpet does, dumb as a ballast less so.
-            And finally, the ranking of all candidates:
-                3. Preference: Which do you like best from the list overall?
-            ''')
+        for word in eval_word_list:
+            print(f"Current word to evaluate: {word}")
+            relevance = int(input("Relevance (scale 1-5): "))
+            linFit = int(input("Linguistic fit (scale 1-5): "))
+            severity = int(input("Severity (scale 1-5): "))
+            humor = int(input("Humor (scale 1-5): "))
+            concrete = int(input("Concreteness (scale 1-5): "))
 
-        for top_words in eval_word_list:
-            # random.shuffle(top_words) # prevent order bias
-            for word in top_words:
-                print(f"\nInsult: {ins}")
-                print(f"Word: {word}")
-                relevance = int(input("Relevance (scale 1-5): "))
-                linFit = int(input("Linguistic fit (scale 1-5): "))
-                severity = int(input("Severity (scale 1-5): "))
-                humor = int(input("Humor (scale 1-5): "))
-                concrete = int(input("Concreteness (scale 1-5): "))
+            writer.writerow({
+                "insult": ins,
+                "scale": insult_scale,
+                "model": model_name,
+                "word": word,
+                "Relevance": relevance,
+                "Linguistic_fit": linFit,
+                "severity": severity,
+                "humor": humor,
+                "concrete": concrete,
+            })
+            
+        preference = int(input(
+            f"\nWhich word do you prefer overall? (index 1 to {len(eval_word_list)}): "
+        ))
+        favorite_word = eval_word_list[preference - 1]
 
-                writer.writerow({
-                    "insult": ins,
-                    "scale": insult_scale,
-                    "model": PCA_method,
-                    "word": word,
-                    "Relevance": relevance,
-                    "Linguistic fit": linFit,
-                    "severity": severity,
-                    "humor": humor,
-                    "concrete": concrete
-                })
-
-        # rows.append([
-        #     ins,
-        #     insult_scale,
-        #     wrap_cell(compact_list(syns, 5)),
-        #     wrap_cell(compact_list(ants, 5)),
-        #     wrap_cell(", ".join(eval_word_list))
-        # ])
-        # print(
-        #     tabulate(
-        #         rows,
-        #         headers=["Original insult", "Semantic scale", "Synonyms", "Antonyms", "Top-5 worse words"],
-        #         tablefmt="fancy_grid",
-        #         colalign=("left", "left", "left", "left", "left")
-        #     )
-        # )    
+        writer.writerow({
+            "insult": ins,
+            "scale": insult_scale,
+            "model": model_name,
+            "word": favorite_word,
+            "Relevance": "",
+            "Linguistic_fit": "",
+            "severity": "",
+            "humor": "",
+            "concrete": "",
+        })

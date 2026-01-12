@@ -5,7 +5,7 @@ from template_processor import get_insult_from_template, comeback_builder_from_t
 from worse_comparator_generator import get_worse_comparator, get_multiple_anchor_comparator
 from syn_ant_generation import *
 from word_list_gen import *
-from Evaluation import run_evaluation
+from Evaluation import *
 import nltk
 
 logger = logging.getLogger(__name__)
@@ -14,22 +14,15 @@ logging.basicConfig(filename='insult_generator.log', level=logging.INFO)
 #TODO: remove words ending on -ness and those that are similar to the insult, etc
 #TODO: runtime toevoegen
 
-EVAL_INSULTS = [
-    "You are as dumb as a rock",
-    "You are as ugly as a troll",
-    "You are as lazy as a sloth",
-    "You are as clueless as a child",
-    "You are as slow as a snail",
-    "You are as annoying as a fly",
-    # "You are as boring as paint",
-    "You are as messy as a pig",
-    "You are as arrogant as a king"
-]
-
 self_battle = False  # Let the insult generator fight against itself
 NUM_ROUNDS = 5      # Determine the amount of insults are generated during self battle
 PCA_method = False   # Enable PCA for semantic scale ranking calculation
 evaluation = True  # Turn on for evaluation mode to get top 5 words for different insults
+
+if PCA_method:
+    model_name = 'pca'
+else:
+    model_name = 'norm'
 
 def generate_comeback(insult):
     """generate a comeback for any given insult"""
@@ -51,14 +44,30 @@ if __name__ == "__main__":
     # prompt input
     # TODO input sanitation
     # TODO add error handling stuff
-    print(
-                "Insult me, I dare you "
-                "\nTemplates: "
-                "\n{[X] are/is as [Y] as a [Z]} "
-                "\n{[X] are/is a [Y]} "
-                "\nOR type \"exit\" to exit\n"
-                )
 
+    if evaluation: 
+        print('''
+Welcome! This is the Human criteria evaluation model.
+There are a couple questions for each word that must be answered on a likert scale from 1-5.
+First, about how the word fits in the sentence as a whole:
+    1a. Relevance: slow as a snail rather than slow as an apple
+    1b. Linguistic fit: Slow as a snail rather than slow as a deaccelartion
+Second, the impact of the word itself:
+    2a. perceived severity / insult strength: Dumb as a dead body is harsh, while dumb as a carpet is very tame
+    2b. Humor / cleverness: Dumb as a dead body is rather morbid, while dumb as a carpet is unintentionally funny
+    2c. Concreteness / imagery: does the word evoke a clear mental image? dumb as carpet does, dumb as a ballast less so.
+And finally, choosing which word ranked best overall:
+    3. Preference: Which do you like best from the list overall?
+            ''')
+    else: 
+        print(
+            "Insult me, I dare you "
+            "\nTemplates: "
+            "\n{[X] are/is as [Y] as a [Z]} "
+            "\n{[X] are/is a [Y]} "
+            "\nOR type \"exit\" to exit\n"
+            )
+    
     if self_battle:
         insult = input(
                 "Write an insult: "
@@ -67,8 +76,9 @@ if __name__ == "__main__":
             comeback = generate_comeback(insult)
             print(f"Round {num} comeback: {comeback}")
             insult = comeback
-    elif evaluation:
-        for ins in EVAL_INSULTS:
+    if evaluation:
+        filename, remaining_insults = get_eval_file_and_remaining_insults(model_name)
+        for ins in remaining_insults:
             template, subject, insult_scale, comparator = get_insult_from_template(ins)
             if insult_scale is None:
                 insult_scale = "terrible"
@@ -77,7 +87,9 @@ if __name__ == "__main__":
                 logger.warning('No antonyms found for scale ' + str(insult_scale))
             words_for_comparator = get_close(comparator)
             worse_comparator_words, scores = get_worse_comparator(syns, ants, words_for_comparator, template, pca_method=PCA_method)
-            run_evaluation(ins, insult_scale, syns, ants, PCA_method, worse_comparator_words, scores)
+            print(f"Using evaluation file: {filename}")
+            print(f"Remaining insults left to evaluate: {remaining_insults}")
+            run_evaluation(ins, insult_scale, model_name, worse_comparator_words, scores, filename)
     else: 
         while True:
             insult = input(
