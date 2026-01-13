@@ -1,17 +1,14 @@
 from string import whitespace
-
-print('file started')
 import logging
 
 from pick_insult import pick_insult
 from template_processor import get_insult_from_template, comeback_builder_from_template
-from worse_comparator_generator import get_worse_comparator, get_multiple_anchor_comparator
+from worse_comparator_generator import get_worse_comparator
 from syn_ant_generation import *
 from word_list_gen import *
 from Evaluation import *
 import nltk
 
-print('file started2')
 logger = logging.getLogger(__name__)
 logging.basicConfig(filename='insult_generator.log', level=logging.INFO)
 
@@ -37,17 +34,15 @@ def generate_comeback(insult,mode):
     if not ants_found:
         logger.warning('No antonyms found for scale ' + str(insult_scale))
     words_for_comparator = get_close(comparator)
-    worse_comparator_words, scores = get_worse_comparator(syns, ants, words_for_comparator, template, pca_method=PCA_method)
+    worse_comparator_words, scores = get_worse_comparator(syns, ants, words_for_comparator, template, pca_method=PCA_method, mid_adjust=True, vec_model='fasttext300')
     worse_comparator = pick_insult(worse_comparator_words, scores)
     logger.info("Increased step comparator: " + worse_comparator)
     comeback = comeback_builder_from_template(insult, template, subject, worse_comparator, insult_scale)
     return comeback
 
 if __name__ == "__main__":
-    print('start download')
     nltk.download('wordnet',quiet=True)
-    print('end download')
-
+    # prompt input
     # TODO input sanitation
     # TODO add error handling stuff
     #Mode selection stuff
@@ -92,7 +87,7 @@ if __name__ == "__main__":
     # prompt input
 
 
-    if evaluation: 
+    if evaluation:
         print('''
 Welcome! This is the Human criteria evaluation model.
 There are a couple questions for each word that must be answered on a likert scale from 1-5.
@@ -106,7 +101,7 @@ Second, the impact of the word itself:
 And finally, choosing which word ranked best overall:
     3. Preference: Which do you like best from the list overall?
             ''')
-    else: 
+    else:
         print(
             "Insult me, I dare you "
             "\nTemplates: "
@@ -131,6 +126,9 @@ And finally, choosing which word ranked best overall:
         #for m in modes:
         for ins in remaining_insults:
             template, subject, insult_scale, comparator = get_insult_from_template(ins)
+            syns, ants, ants_found = get_scale_syns_and_opposites(insult_scale, 'wordnet')
+            print('synonyms: ', syns)
+            print('antonyms: ', ants)
             if insult_scale is None:
                 insult_scale = "terrible"
             syns, ants, ants_found = get_scale_syns_and_opposites(insult_scale)
