@@ -81,7 +81,7 @@ def encode_anchor(words, vec_model='wordnet'):
         mean_vec = np.mean(vecs, axis=0)
         mean_vec = mean_vec / np.linalg.norm(mean_vec)
         return mean_vec
-    elif vec_model == 'fasttext300':
+    elif vec_model == 'fasttext':
         logger.info('Encoding anchor words' + str(words))
         new_model = fasttext.load_model('cc.en.300.bin')
         vecs = np.array([new_model.get_word_vector(w) for w in words])
@@ -111,7 +111,7 @@ def make_scale_list(words1, words2, word_list, vec_model='wordnet'):
     for word in word_list:
         if vec_model == 'wordnet':
             deter = model.encode(word, show_progress_bar=False)
-        elif vec_model == 'fasttext300':
+        elif vec_model == 'fasttext':
             new_model = fasttext.load_model('cc.en.300.bin')
             deter = new_model.get_word_vector(word)
         else:

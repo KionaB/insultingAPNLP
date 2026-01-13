@@ -135,7 +135,7 @@ And finally, choosing which word ranked best overall:
             if not ants_found:
                 logger.warning('No antonyms found for scale ' + str(insult_scale))
             words_for_comparator = get_close(comparator)
-            worse_comparator_words, scores = get_worse_comparator(syns, ants, words_for_comparator, template, pca_method=PCA_method)
+            worse_comparator_words, scores = get_worse_comparator(syns, ants, words_for_comparator, template, pca_method=PCA_method) # Important This also has 2 extra args mid_adjust: bool, vec_model='fasttext'
             print(f"Using evaluation file: {filename}")
             print(f"Remaining insults left to evaluate: {remaining_insults}")
             run_evaluation(ins, insult_scale, model_name, worse_comparator_words, scores, filename)
