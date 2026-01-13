@@ -28,7 +28,7 @@ if PCA_method:
 else:
     model_name = 'norm'
 
-def generate_comeback(insult):
+def generate_comeback(insult,mode):
     """generate a comeback for any given insult"""
     template, subject, insult_scale, comparator = get_insult_from_template(insult)
     if insult_scale is None:
