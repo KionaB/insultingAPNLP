@@ -118,7 +118,7 @@ def run_evaluation(ins, insult_scale, model_name, worse_comparator_words, scores
     
         eval_word_list = pick_eval_insult(worse_comparator_words, scores, 5)
         
-        print("\nCurrent insult: {ins}")
+        print("\nCurrent insult: " + ins)
         print("\nCandidate words:")
         for i, word in enumerate(eval_word_list, start=1):
             print(f"{i}. {word}")
