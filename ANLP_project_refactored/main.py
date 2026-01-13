@@ -1,16 +1,14 @@
-print('file started')
 import logging
 
 from pick_insult import pick_insult, pick_eval_insult
 from template_processor import get_insult_from_template, comeback_builder_from_template
-from worse_comparator_generator import get_worse_comparator, get_multiple_anchor_comparator
+from worse_comparator_generator import get_worse_comparator
 from syn_ant_generation import *
 from word_list_gen import *
 from tabulate import tabulate
 import nltk
 import textwrap
 
-print('file started2')
 logger = logging.getLogger(__name__)
 logging.basicConfig(filename='insult_generator.log', level=logging.INFO)
 
@@ -57,20 +55,18 @@ def generate_comeback(insult):
     template, subject, insult_scale, comparator = get_insult_from_template(insult)
     if insult_scale is None:
         insult_scale = "terrible"
-    syns, ants, ants_found = get_scale_syns_and_opposites(insult_scale, 'fasttext') # choose between 'wordnet', 'fasttext' and 'extremes', but extremes does not work with worse_comparator yet
+    syns, ants, ants_found = get_scale_syns_and_opposites(insult_scale, 'extremes') # choose between 'wordnet', 'fasttext' and 'extremes', but extremes does not work with worse_comparator yet
     if not ants_found:
         logger.warning('No antonyms found for scale ' + str(insult_scale))
     words_for_comparator = get_close(comparator)
-    worse_comparator_words, scores = get_worse_comparator(syns, ants, words_for_comparator, template, pca_method=PCA_method)
+    worse_comparator_words, scores = get_worse_comparator(syns, ants, words_for_comparator, template, pca_method=PCA_method, mid_adjust=True, vec_model='fasttext300')
     worse_comparator = pick_insult(worse_comparator_words, scores)
     logger.info("Increased step comparator: " + worse_comparator)
     comeback = comeback_builder_from_template(insult, template, subject, worse_comparator, insult_scale)
     return comeback
 
 if __name__ == "__main__":
-    print('start download')
     nltk.download('wordnet',quiet=True)
-    print('end download')
     # prompt input
     # TODO input sanitation
     # TODO add error handling stuff
@@ -95,11 +91,13 @@ if __name__ == "__main__":
         for ins in EVAL_INSULTS:
             print(ins)
             template, subject, insult_scale, comparator = get_insult_from_template(ins)
-            syns, ants, ants_found = get_scale_syns_and_opposites(insult_scale)
+            syns, ants, ants_found = get_scale_syns_and_opposites(insult_scale, 'wordnet')
+            print('synonyms: ', syns)
+            print('antonyms: ', ants)
             if not ants_found:
                 print('No antonyms found for scale ' + str(insult_scale))
             words_for_comparator = get_close(comparator)
-            worse_comparator_words, scores = get_worse_comparator(syns, ants, words_for_comparator, template, pca_method=PCA_method)
+            worse_comparator_words, scores = get_worse_comparator(syns, ants, words_for_comparator, template, pca_method=PCA_method, mid_adjust=True, vec_model='fasttext300')
             eval_word_list = pick_eval_insult(worse_comparator_words, scores, 5)
             # rows.append([ins, insult_scale, ", ".join(syns), ", ".join(ants), ", ".join(eval_word_list)])
             rows.append([

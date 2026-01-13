@@ -90,6 +90,8 @@ def get_scale_syns_and_opposites(scale: str, mode='wordnet'):
         neg_end, pos_end = extreme_neighbors(syns, ants, model, scale=10, k=30)
         # clean_neg = dedupe_word_list_strong(neg_end, model)
         # clean_pos = dedupe_word_list_strong(pos_end, model)
+        neg_end = [neg_word for neg_word, _ in neg_end]
+        pos_end = [pos_word for pos_word, _ in pos_end]
         return neg_end, pos_end, found
     else:
         raise Exception("your mode was: ", mode, ".Mode must be 'wordnet', 'fasttext', or 'extremes'")
