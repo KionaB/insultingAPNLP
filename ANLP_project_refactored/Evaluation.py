@@ -12,11 +12,10 @@ import re
     # ensure diversity, words that are very similar need to be removed (slow vs slow-down)
     
     # Human criteria on likert scale (1-5):
-    # 1a. Relevance: slow as a snail rather than slow as an apple
-    # 1b. Linguistic fit: Slow as a snail rather than slow as a deaccelartion
-    # 2a. perceived severity / insult strength: Dumb as a dead body is harsh, while dumb as a carpet is very tame
-    # 2b. Humor / cleverness: Dumb as a dead body is rather morbid, while dumb as a carpet is unintentionally funny
-    # 2c. Concreteness / imagery: does the word evoke a clear mental image? dumb as carpet does, dumb as a ballast less so.
+    # 1a. Relevance: slow as a snail rather than slow as an apple                                                                   1-5
+    # 2a. perceived severity / insult strength: Dumb as a dead body is harsh, while dumb as a carpet is very tame                   1-5
+    # 2b. Humor / cleverness: Dumb as a dead body is rather morbid, while dumb as a carpet is unintentionally funny                 1-5
+    # 2c. Concreteness / imagery: does the word evoke a clear mental image? dumb as carpet does, dumb as a ballast less so.         Y/N
     # 3. Preference: Which do you like best from the list?
 #TODO: Automatisch invullen en loggen voor evaluatie
 

@@ -15,12 +15,28 @@ print('file started2')
 logger = logging.getLogger(__name__)
 logging.basicConfig(filename='insult_generator.log', level=logging.INFO)
 
-#TODO: remove words ending on -ness and those that are similar to the insult, etc
-#TODO: runtime toevoegen
+#TODO: remove duplicate words                               Timon
+
+#TODO: remove those that are similar to the insult scale    Nathan
+#TODO: add insult reminder during eval                      
+#TODO: change evaluation criterea
+#TODO: Create statistics for the final evaluation csv file
+#TODO: Add check that 5 words are present in csv file per insult, otherwise start insult over
+#TODO: Add comparator word in the evaluation csv list
+#TODO: fix that pca selection happens through user input and mode selection (and the other stuff too)
+#TODO: for in report, add syn ants example list, everything for a couple example insults for in the appendices. 
+
+#TODO: runtime toevoegen                                    Kiona
+#TODO: implement mode changes
+#TODO: remove words ending on -ness
+#TODO: mooie plaatjes van hirarchy ?
+
+
+
 
 self_battle = False  # Let the insult generator fight against itself
 NUM_ROUNDS = 5      # Determine the amount of insults are generated during self battle
-PCA_method = False   # Enable PCA for semantic scale ranking calculation
+PCA_method = True   # Enable PCA for semantic scale ranking calculation
 evaluation = True  # Turn on for evaluation mode to get top 5 words for different insults
 
 if PCA_method:
