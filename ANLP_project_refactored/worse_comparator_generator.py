@@ -27,7 +27,7 @@ else:
 model = SentenceTransformer("all-mpnet-base-v2")
 logger = logging.getLogger(__name__)
 
-def get_worse_comparator(syns, ants, words_for_comparator, method: bool, pca_method=False):
+def get_worse_comparator(syns, ants, words_for_comparator, method: bool, pca_method=False, mid_adjust=False, vec_model='wordnet'):
     """Gets a comparator and optional scale to compare on, generates a stronger comparator
     @:arg str comparator: the comparator to outdo
     @:arg str scale: the scale to outdo comparator on, optional, if not provided function will return a more negative word
@@ -36,23 +36,28 @@ def get_worse_comparator(syns, ants, words_for_comparator, method: bool, pca_met
     disable_progress_bar()
     # print(syns, ants, words_for_comparator, method, pca)
     if not pca_method:
-        worse_comparator, scores = get_multiple_anchor_comparator(syns, ants, words_for_comparator, method)
+        worse_comparator, scores, dists = make_scale_list(syns, ants, words_for_comparator, vec_model)
     else:
-        worse_comparator, scores = pca(syns, ants, words_for_comparator)
+        worse_comparator, scores, dists = pca(syns, ants, words_for_comparator)
+
+    if mid_adjust:
+        normed_dists = (dists - np.min(dists)) / (np.max(dists) - np.min(dists))
+        t_avg = np.mean(scores)
+        scores = scores + (t_avg - scores) * normed_dists
     return worse_comparator, scores
 
 # TODO make list option for words
 
 # def get_multiple_anchor_comparator(comparator: str, scale: str, method: bool):
-def get_multiple_anchor_comparator(syns, ants, words_for_comparator, method: bool):
-    """Gets comparator and scale, then uses Multiple_word_anchor.ipynb's method to generate a worse comparator based on synonyms and antonyms from nltk"""
-    if method: 
-        comparator_list, scores = pca(list(set(syns)), list(set(ants)), list(set(words_for_comparator)))
-    else:
-        comparator_list, scores = make_scale_list(list(set(syns)), list(set(ants)), list(set(words_for_comparator)))
-    #TODO: make the index higher than current used word and make sure to not use already used words
-    # index = random.randint(0, len(comparator_list)-1)
-    return comparator_list, scores
+# def get_multiple_anchor_comparator(syns, ants, words_for_comparator, method: bool):
+#     """Gets comparator and scale, then uses Multiple_word_anchor.ipynb's method to generate a worse comparator based on synonyms and antonyms from nltk"""
+#     if method:
+#         comparator_list, scores = pca(list(set(syns)), list(set(ants)), list(set(words_for_comparator)))
+#     else:
+#         comparator_list, scores = make_scale_list(list(set(syns)), list(set(ants)), list(set(words_for_comparator)), vec_model)
+#     #TODO: make the index higher than current used word and make sure to not use already used words
+#     # index = random.randint(0, len(comparator_list)-1)
+#     return comparator_list, scores
 
     # index = 0
     # result = comparator_list[index]
@@ -68,14 +73,22 @@ def get_multiple_anchor_comparator(syns, ants, words_for_comparator, method: boo
 
 # MULTIPLE_WORD_ANCHOR methods ---------------------------------------------------------
 # This combines multiple similar words into a single word anchor to remove noise
-def encode_anchor(words):
-    logger.info('Encoding anchor words' + str(words))
-    vecs = model.encode(words, show_progress_bar=False)
-    vecs = normalize(vecs) # I still find this step a bit suspiscious
-    mean_vec = np.mean(vecs, axis=0)
-    mean_vec = mean_vec / np.linalg.norm(mean_vec)
-    return mean_vec
-
+def encode_anchor(words, vec_model='wordnet'):
+    if vec_model == 'wordnet':
+        logger.info('Encoding anchor words' + str(words))
+        vecs = model.encode(words, show_progress_bar=False)
+        vecs = normalize(vecs) # I still find this step a bit suspiscious
+        mean_vec = np.mean(vecs, axis=0)
+        mean_vec = mean_vec / np.linalg.norm(mean_vec)
+        return mean_vec
+    elif vec_model == 'fasttext':
+        logger.info('Encoding anchor words' + str(words))
+        new_model = fasttext.load_model('cc.en.300.bin')
+        vecs = np.array([new_model.get_word_vector(w) for w in words])
+        vecs = normalize(vecs)  # I still find this step a bit suspiscious
+        mean_vec = np.mean(vecs, axis=0)
+        mean_vec = mean_vec / np.linalg.norm(mean_vec)
+        return mean_vec
 
 # This function does the projection
 def proj_meas(v1, v2, v3):
@@ -89,14 +102,20 @@ def proj_meas(v1, v2, v3):
 
 
 # Here I make the list and sort them based on the scale
-def make_scale_list(words1, words2, word_list):
+def make_scale_list(words1, words2, word_list, vec_model='wordnet'):
     scale_scores = []
     dist_scores = []
-    vec1 = encode_anchor(words1)
-    vec2 = encode_anchor(words2)
+    vec1 = encode_anchor(words1, vec_model=vec_model)
+    vec2 = encode_anchor(words2, vec_model=vec_model)
 
     for word in word_list:
-        deter = model.encode(word, show_progress_bar=False)
+        if vec_model == 'wordnet':
+            deter = model.encode(word, show_progress_bar=False)
+        elif vec_model == 'fasttext':
+            new_model = fasttext.load_model('cc.en.300.bin')
+            deter = new_model.get_word_vector(word)
+        else:
+            raise Exception("You did not input a correct model, please pick 'wordnet' or 'fasttext300'")
         deter = deter / np.linalg.norm(deter)
 
         d, proj, t = proj_meas(vec1, vec2, deter)
@@ -113,7 +132,7 @@ def make_scale_list(words1, words2, word_list):
     headers = ["Word", "t (scale)", "Distance", "Normalized Distance"]
     # print('From ', words1, ' to ', words2, ':')
     # print(tabulate(table, headers=headers, tablefmt="fancy_grid"))
-    return words, scores
+    return words, scores, dists
 
 
 
@@ -202,4 +221,5 @@ def pca(syns, ants, word_list):
     # Return only the sorted word list
     sorted_words = [w for (w, _, _) in results]
     sorted_scores = [s for (_, s, _) in results]
-    return sorted_words, sorted_scores
+    sorted_dists = [d for (_, _, d) in results]
+    return sorted_words, sorted_scores, sorted_dists
