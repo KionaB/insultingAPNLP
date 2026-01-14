@@ -1,6 +1,5 @@
 from tabulate import tabulate
 from pick_insult import pick_eval_insult
-import textwrap
 import csv
 import os
 import re
@@ -12,41 +11,33 @@ import re
     # ensure diversity, words that are very similar need to be removed (slow vs slow-down)
     
     # Human criteria on likert scale (1-5):
-    # 1a. Relevance: slow as a snail rather than slow as an apple
-    # 1b. Linguistic fit: Slow as a snail rather than slow as a deaccelartion
-    # 2a. perceived severity / insult strength: Dumb as a dead body is harsh, while dumb as a carpet is very tame
-    # 2b. Humor / cleverness: Dumb as a dead body is rather morbid, while dumb as a carpet is unintentionally funny
-    # 2c. Concreteness / imagery: does the word evoke a clear mental image? dumb as carpet does, dumb as a ballast less so.
+    # 1a. Relevance: slow as a snail rather than slow as an apple                                                                   1-5
+    # 2a. perceived severity / insult strength: Dumb as a dead body is harsh, while dumb as a carpet is very tame                   1-5
+    # 2b. Humor / cleverness: Dumb as a dead body is rather morbid, while dumb as a carpet is unintentionally funny                 1-5
+    # 2c. Concreteness / imagery: does the word evoke a clear mental image? dumb as carpet does, dumb as a ballast less so.         Y/N
     # 3. Preference: Which do you like best from the list?
-#TODO: Automatisch invullen en loggen voor evaluatie
 
-fields = ["insult", "scale", "model", "word", "Relevance", "Linguistic_fit", "severity", "humor", "concrete"]
+fields = ["insult", "scale", "ants_found", "model", "word", "Relevance", "Severity", "Humor", "Concreteness"]
+
+questions = [
+    ("Relevance (scale 1-5): ", "int"),
+    ("Severity (scale 1-5): ", "int"),
+    ("Humor (scale 1-5): ", "int"),
+    ("Concreteness (Y/N): ", "yn")
+]
 
 EVAL_INSULTS = [
-    # "You are as dumb as a rock",
     "You are as ugly as a troll",
     "You are as lazy as a sloth",
-    # "You are as clueless as a child",
     "You are as slow as a snail",
     "You are as annoying as a fly",
     "You are as messy as a pig",
-    # "You are as arrogant as a king"
+    # "You are as arrogant as a king",
+    # "You are as dumb as a rock",
+    # "You are as clueless as a child"
 ]
 
-def compact_list(words, k=5):
-    """Deduplicate and keep at most k words."""
-    seen = []
-    for w in words:
-        if w not in seen:
-            seen.append(w)
-        if len(seen) == k:
-            break
-    return ", ".join(seen)
-
-def wrap_cell(text, width=40):
-    """Wrap long table cells."""
-    return "\n".join(textwrap.wrap(text, width))
-
+# ---------------------- Evaluation CSV file functions ---------------------------------------
 def get_next_eval_filename(model, prefix="evaluation_log"):
     """Creates filename if a new csv file must be added with icreased index"""
     pattern = re.compile(rf"{prefix}(\d+)_{re.escape(model)}\.csv")
@@ -107,8 +98,37 @@ def get_eval_file_and_remaining_insults(model):
     remaining = [ins for ins in EVAL_INSULTS if ins not in evaluated]
     return latest_file, remaining
 
+# ------------------------- Input checker functions -----------------------------
+def get_input(prompt, input_type="int", min_val=1, max_val=5):
+    """Generic input handler: input_type: int or string (y/n), 
+    returns valid value or 'exit' if evaluation must be stopped """
 
-def run_evaluation(ins, insult_scale, model_name, worse_comparator_words, scores, filename):
+    while True:
+        val = input(prompt).strip()
+        if val.lower() == "exit":
+            return "exit"
+
+        if input_type == "int":
+            try:
+                val_int = int(val)
+                if min_val <= val_int <= max_val:
+                    return val_int
+                else:
+                    print(f"Enter an integer between {min_val}-{max_val}, or 'exit' to stop.")
+            except ValueError:
+                print("Please enter a valid integer, or 'exit' to stop.")
+        elif input_type == "yn":
+            val_lower = val.lower()
+            if val_lower in ("y", "n"):
+                return val_lower
+            else:
+                print("Please enter Y or N, or 'exit' to stop.")
+        else:
+            raise ValueError(f"Unknown input_type: {input_type}")
+
+
+# ---------------------------------- Run Evaluation -----------------------------------------
+def run_evaluation(ins, insult_scale, ants_found, model_name, worse_comparator_words, filename):
     file_exists = os.path.exists(filename)
 
     with open (filename, "a", newline="", encoding='utf-8') as f:
@@ -116,31 +136,34 @@ def run_evaluation(ins, insult_scale, model_name, worse_comparator_words, scores
         if not file_exists:
             writer.writeheader()
     
-        eval_word_list = pick_eval_insult(worse_comparator_words, scores, 5)
+        eval_word_list = pick_eval_insult(worse_comparator_words, insult_scale, 5)
         
-        print("\nCurrent insult: " + ins)
         print("\nCandidate words:")
         for i, word in enumerate(eval_word_list, start=1):
             print(f"{i}. {word}")
 
         for word in eval_word_list:
+            answers = {}
+
+            print(f"\nCurrent insult: {ins}")
             print(f"Current word to evaluate: {word}")
-            relevance = int(input("Relevance (scale 1-5): "))
-            linFit = int(input("Linguistic fit (scale 1-5): "))
-            severity = int(input("Severity (scale 1-5): "))
-            humor = int(input("Humor (scale 1-5): "))
-            concrete = int(input("Concreteness (scale 1-5): "))
+
+            for prompt, qtype in questions:
+                val = get_input(prompt, input_type=qtype)
+                if val == "exit":
+                    return False
+                answers[prompt] = val
 
             writer.writerow({
                 "insult": ins,
                 "scale": insult_scale,
+                "ants_found": ants_found,
                 "model": model_name,
                 "word": word,
-                "Relevance": relevance,
-                "Linguistic_fit": linFit,
-                "severity": severity,
-                "humor": humor,
-                "concrete": concrete,
+                "Relevance": answers["Relevance (scale 1-5): "],
+                "Severity": answers["Severity (scale 1-5): "],
+                "Humor": answers["Humor (scale 1-5): "],
+                "Concreteness": answers["Concreteness (Y/N): "],
             })
             
         preference = int(input(
@@ -151,11 +174,12 @@ def run_evaluation(ins, insult_scale, model_name, worse_comparator_words, scores
         writer.writerow({
             "insult": ins,
             "scale": insult_scale,
+            "ants_found": ants_found,
             "model": model_name,
             "word": favorite_word,
             "Relevance": "",
-            "Linguistic_fit": "",
-            "severity": "",
-            "humor": "",
-            "concrete": "",
+            "Severity": "",
+            "Humor": "",
+            "Concreteness": "",
         })
+    return True
