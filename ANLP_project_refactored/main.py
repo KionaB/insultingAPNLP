@@ -8,6 +8,7 @@ from syn_ant_generation import *
 from word_list_gen import *
 from Evaluation import *
 import nltk
+from WordCleanUp import clean_syn_ant
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(filename='insult_generator.log', level=logging.INFO)
@@ -29,6 +30,7 @@ def generate_comeback(insult,mode):
     if insult_scale is None:
         insult_scale = "terrible"
     syns, ants, ants_found = get_scale_syns_and_opposites(insult_scale, mode) # choose between 'wordnet', 'fasttext' and 'extremes', but extremes does not work with worse_comparator yet
+    syns, ants = clean_syn_ant(syns), clean_syn_ant(ants) # Clean the synonyms and antonyms
     if not ants_found:
         logger.warning('No antonyms found for scale ' + str(insult_scale))
     words_for_comparator = get_close(comparator)
