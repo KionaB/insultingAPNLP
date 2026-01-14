@@ -15,31 +15,13 @@ logging.basicConfig(filename='insult_generator.log', level=logging.INFO)
 #TODO: remove duplicate words                               Timon
 
 #TODO: remove those that are similar to the insult scale    Nathan
-#TODO: add insult reminder during eval                      
-#TODO: change evaluation criterea
 #TODO: Create statistics for the final evaluation csv file
-#TODO: Add check that 5 words are present in csv file per insult, otherwise start insult over
-#TODO: Add comparator word in the evaluation csv list
-#TODO: fix that pca selection happens through user input and mode selection (and the other stuff too)
 #TODO: for in report, add syn ants example list, everything for a couple example insults for in the appendices. 
 
 #TODO: runtime toevoegen                                    Kiona
 #TODO: implement mode changes
 #TODO: remove words ending on -ness
 #TODO: mooie plaatjes van hirarchy ?
-
-
-
-
-self_battle = False  # Let the insult generator fight against itself
-NUM_ROUNDS = 5      # Determine the amount of insults are generated during self battle
-PCA_method = True   # Enable PCA for semantic scale ranking calculation
-evaluation = True  # Turn on for evaluation mode to get top 5 words for different insults
-
-if PCA_method:
-    model_name = 'pca'
-else:
-    model_name = 'norm'
 
 def generate_comeback(insult,mode):
     """generate a comeback for any given insult"""
@@ -58,14 +40,19 @@ def generate_comeback(insult,mode):
 
 if __name__ == "__main__":
     nltk.download('wordnet',quiet=True)
-    # prompt input
-    # TODO input sanitation
-    # TODO add error handling stuff
-    #Mode selection stuff
     battle_self_in = input("Do you want to watch the computer battle itself? (y/n)").lower().strip(whitespace)
     if battle_self_in == "y" or battle_self_in == "yes":
         print('battling myself')
         self_battle = True
+        while True:
+            user_input = input(
+                "How many rounds do you want me to battle myself for?"
+            )
+            try:
+                NUM_ROUNDS = int(user_input)
+                break
+            except ValueError:
+                print("Please enter a valid integer.")
     else:
         self_battle = False
 
@@ -73,8 +60,10 @@ if __name__ == "__main__":
     if pca_in == "y" or pca_in == "yes":
         print('pca on')
         PCA_method = True
+        model_name = 'pca'
     else:
         PCA_method = False
+        model_name = 'norm'
 
     eval_in = input("Are you evaluating? (y/n)").lower().strip(whitespace)
     if eval_in == "y" or eval_in == "yes":
@@ -147,14 +136,16 @@ And finally, choosing which word ranked best overall:
             print('antonyms: ', ants)
             if insult_scale is None:
                 insult_scale = "terrible"
-            syns, ants, ants_found = get_scale_syns_and_opposites(insult_scale)
             if not ants_found:
                 logger.warning('No antonyms found for scale ' + str(insult_scale))
             words_for_comparator = get_close(comparator)
             worse_comparator_words, scores = get_worse_comparator(syns, ants, words_for_comparator, template, pca_method=PCA_method) # Important This also has 2 extra args mid_adjust: bool, vec_model='fasttext'
             print(f"Using evaluation file: {filename}")
             print(f"Remaining insults left to evaluate: {remaining_insults}")
-            run_evaluation(ins, insult_scale, model_name, worse_comparator_words, scores, filename)
+            completed = run_evaluation(ins, insult_scale, ants_found, model_name, worse_comparator_words, filename)
+            if not completed:
+                print("Stopped evaluation")
+                break
 
     else: 
         if mode_num !='exit':
