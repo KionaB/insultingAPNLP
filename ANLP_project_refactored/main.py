@@ -14,8 +14,7 @@ logging.basicConfig(filename='insult_generator.log', level=logging.INFO)
 
 #TODO: remove duplicate words                               Timon
 
-#TODO: remove those that are similar to the insult scale    Nathan
-#TODO: Create statistics for the final evaluation csv file
+#TODO: Create statistics for the final evaluation csv file  Nathan
 #TODO: for in report, add syn ants example list, everything for a couple example insults for in the appendices. 
 
 #TODO: runtime toevoegen                                    Kiona
@@ -32,7 +31,9 @@ def generate_comeback(insult,mode):
     if not ants_found:
         logger.warning('No antonyms found for scale ' + str(insult_scale))
     words_for_comparator = get_close(comparator)
-    worse_comparator_words, scores = get_worse_comparator(syns, ants, words_for_comparator, template, pca_method=PCA_method, mid_adjust=True, vec_model='fasttext300')
+    worse_comparator_words, scores = get_worse_comparator(syns, ants, insult_scale, words_for_comparator, 
+                                                            pca_method=PCA_method, mid_adjust=True, vec_model=mode, 
+                                                            similarity_threshold = 2, max_words = None) 
     worse_comparator = pick_insult(worse_comparator_words, scores)
     logger.info("Increased step comparator: " + worse_comparator)
     comeback = comeback_builder_from_template(insult, template, subject, worse_comparator, insult_scale)
@@ -106,14 +107,6 @@ Second, the impact of the word itself:
 And finally, choosing which word ranked best overall:
     3. Preference: Which do you like best from the list overall?
             ''')
-    else:
-        print(
-            "Insult me, I dare you "
-            "\nTemplates: "
-            "\n{[X] are/is as [Y] as a [Z]} "
-            "\n{[X] are/is a [Y]} "
-            "\nOR type \"exit\" to exit\n"
-        )
 
     if self_battle:
         insult = input(
@@ -139,7 +132,9 @@ And finally, choosing which word ranked best overall:
             if not ants_found:
                 logger.warning('No antonyms found for scale ' + str(insult_scale))
             words_for_comparator = get_close(comparator)
-            worse_comparator_words, scores = get_worse_comparator(syns, ants, words_for_comparator, template, pca_method=PCA_method) # Important This also has 2 extra args mid_adjust: bool, vec_model='fasttext'
+            worse_comparator_words, scores = get_worse_comparator(syns, ants, insult_scale, words_for_comparator, 
+                                                                    pca_method=PCA_method, mid_adjust=True, vec_model=mode, 
+                                                                    similarity_threshold = 2, max_words = None)            
             print(f"Using evaluation file: {filename}")
             print(f"Remaining insults left to evaluate: {remaining_insults}")
             completed = run_evaluation(ins, insult_scale, ants_found, model_name, worse_comparator_words, filename)

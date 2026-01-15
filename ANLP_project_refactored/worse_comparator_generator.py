@@ -1,3 +1,4 @@
+#TODO: cleanup imports
 import logging
 import re
 import os
@@ -9,30 +10,60 @@ from transformers.utils.logging import disable_progress_bar
 from tabulate import tabulate
 from sklearn.preprocessing import normalize
 from sklearn.decomposition import PCA
+import nltk
+from nltk.stem import WordNetLemmatizer
 from nltk.corpus import wordnet
 import random
 import pickle
 import torch
-
-# We can make these more specific later
+import spacy
+from Levenshtein import distance as LSdis
 from syn_ant_generation import *
 from word_list_gen import *
-# End of prev comment
 
 if torch.cuda.is_available():
     device = "cuda" 
 else:
     device = "cpu"
-
+    
+lemmatizer = WordNetLemmatizer()
 model = SentenceTransformer("all-mpnet-base-v2")
 logger = logging.getLogger(__name__)
 
-def get_worse_comparator(syns, ants, words_for_comparator, method: bool, pca_method=False, mid_adjust=False, vec_model='wordnet'):
+def filter_worse_comparator_list(word_list, scale, similarity_threshold, max_words = None):
+    """Filter the list of comparator words to remove duplicates and similar words."""
+    filtered = []
+    seen_lemmas = set()
+    scale_lemma = lemmatizer.lemmatize(scale)
+
+    for word in word_list:
+        if re.compile(r"(ness|ity|ism)$").search(word):
+            # skip if word ends in -ness, -ity, or -ism
+            continue
+
+        word_lemma = lemmatizer.lemmatize(word)
+        if word_lemma == scale_lemma: 
+            # skip if lemma has already been seen
+            continue
+        if word_lemma in seen_lemmas:
+            continue
+        # if LSdis(word, scale) <= similarity_threshold:
+        #     # skip if too similar to insult scale word
+        #     continue
+        filtered.append(word)
+        seen_lemmas.add(word_lemma)
+
+        if max_words is not None and len(filtered) >= max_words:
+            # Can be used to only look at the top words for speed purpose
+            break
+    return filtered
+
+def get_worse_comparator(syns, ants, insult_scale, words_for_comparator, pca_method=False, mid_adjust=False, vec_model='wordnet', similarity_threshold = 3, max_words = None):
     """Gets a comparator and optional scale to compare on, generates a stronger comparator
     @:arg str comparator: the comparator to outdo
     @:arg str scale: the scale to outdo comparator on, optional, if not provided function will return a more negative word
     @:returns str worse_comparator: a more negative comparator or the worse comparator on the scale"""
-    worse_comparator = " "
+    
     disable_progress_bar()
     # print(syns, ants, words_for_comparator, method, pca)
     if not pca_method:
@@ -44,7 +75,11 @@ def get_worse_comparator(syns, ants, words_for_comparator, method: bool, pca_met
         normed_dists = (dists - np.min(dists)) / (np.max(dists) - np.min(dists))
         t_avg = np.mean(scores)
         scores = scores + (t_avg - scores) * normed_dists
-    return worse_comparator, scores
+    
+    filtered_worse_comparator = filter_worse_comparator_list(worse_comparator, insult_scale, similarity_threshold = similarity_threshold, max_words = max_words)
+    print(worse_comparator)
+    print(filtered_worse_comparator)
+    return filtered_worse_comparator, scores
 
 # TODO make list option for words
 
@@ -115,7 +150,7 @@ def make_scale_list(words1, words2, word_list, vec_model='wordnet'):
             new_model = fasttext.load_model('cc.en.300.bin')
             deter = new_model.get_word_vector(word)
         else:
-            raise Exception("You did not input a correct model, please pick 'wordnet' or 'fasttext300'")
+            raise Exception("You did not input a correct model, please pick 'wordnet' or 'fasttext'")
         deter = deter / np.linalg.norm(deter)
 
         d, proj, t = proj_meas(vec1, vec2, deter)
