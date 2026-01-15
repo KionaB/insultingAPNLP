@@ -107,12 +107,12 @@ def make_scale_list(words1, words2, word_list, vec_model='wordnet'):
     dist_scores = []
     vec1 = encode_anchor(words1, vec_model=vec_model)
     vec2 = encode_anchor(words2, vec_model=vec_model)
-
+    if vec_model == 'fasttext':
+        new_model = fasttext.load_model('cc.en.300.bin')
     for word in word_list:
         if vec_model == 'wordnet':
             deter = model.encode(word, show_progress_bar=False)
         elif vec_model == 'fasttext':
-            new_model = fasttext.load_model('cc.en.300.bin')
             deter = new_model.get_word_vector(word)
         else:
             raise Exception("You did not input a correct model, please pick 'wordnet' or 'fasttext', you entered: ", vec_model)

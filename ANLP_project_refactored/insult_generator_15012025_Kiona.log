@@ -1,0 +1,228 @@
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = ugly, comparator = troll
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = ugly, comparator = troll
+INFO:__main__:time to get syns and ants2.438546100020176
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = ugly, comparator = troll
+INFO:__main__:time to get syns and ants2.402697999990778
+INFO:__main__:time to clean syns and ants0.00045750002027489245
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = ugly, comparator = troll
+INFO:__main__:time to get syns and ants2.43062739999732
+INFO:__main__:time to clean syns and ants0.0004622999986167997
+INFO:worse_comparator_generator:Encoding anchor words['worthless', 'horrifying', 'atrocious', 'horrible', 'wretched', 'despicable', 'ugly', 'unworthy', 'frightful']
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = ugly, comparator = troll
+INFO:__main__:time to get syns and ants2.427530499990098
+INFO:__main__:time to clean syns and ants0.00044650002382695675
+INFO:worse_comparator_generator:Encoding anchor words['frightful', 'worthless', 'atrocious', 'unworthy', 'horrible', 'ugly', 'wretched', 'horrifying', 'despicable']
+INFO:worse_comparator_generator:Encoding anchor words['beautiful']
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = ugly, comparator = troll
+INFO:__main__:time to get syns and ants2.4062419999972917
+INFO:__main__:time to clean syns and ants0.001893200009362772
+INFO:worse_comparator_generator:Encoding anchor words['horrifying', 'frightful', 'unworthy', 'atrocious', 'horrible', 'worthless', 'wretched', 'despicable', 'ugly']
+INFO:worse_comparator_generator:Encoding anchor words['beautiful']
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = ugly, comparator = troll
+INFO:__main__:time to get syns and ants2.3906572999999867
+INFO:__main__:time to clean syns and ants6.999999868639861e-07
+INFO:worse_comparator_generator:Encoding anchor words['ugly', 'surly', 'ugly', 'despicable', 'ugly', 'vile', 'slimy', 'unworthy', 'worthless', 'wretched', 'atrocious', 'frightful', 'horrifying', 'horrible', 'ugly']
+INFO:worse_comparator_generator:Encoding anchor words['beautiful']
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = ugly, comparator = troll
+INFO:__main__:time to get syns and ants2.3161384
+INFO:__main__:time to clean syns and ants8.999995770864189e-07
+INFO:worse_comparator_generator:Encoding anchor words['ugly', 'surly', 'ugly', 'despicable', 'ugly', 'vile', 'slimy', 'unworthy', 'worthless', 'wretched', 'atrocious', 'frightful', 'horrifying', 'horrible', 'ugly']
+INFO:worse_comparator_generator:Encoding anchor words['beautiful']
+INFO:__main__:time to get alternative comparator words: 0.04038180000043212
+INFO:__main__:time to get worse comparator scores: 1877.9013785000002
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = ugly, comparator = troll
+INFO:__main__:time to get syns and ants6.24801799999932
+INFO:__main__:time to clean syns and ants259.7697781000006
+INFO:worse_comparator_generator:Encoding anchor words['atrocious', 'ugly', 'horrible', 'frightful', 'horrifying', 'despicable', 'unworthy', 'worthless', 'wretched']
+INFO:worse_comparator_generator:Encoding anchor words['beautiful']
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = ugly, comparator = troll
+INFO:__main__:time to get syns and ants6.3431712999999945
+INFO:__main__:time to clean syns and ants28.153107899999668
+INFO:worse_comparator_generator:Encoding anchor words['atrocious', 'worthless', 'horrifying', 'wretched', 'frightful', 'despicable', 'horrible', 'ugly', 'unworthy']
+INFO:worse_comparator_generator:Encoding anchor words['beautiful']
+INFO:__main__:time to get alternative comparator words: 0.047998799999732
+INFO:__main__:time to get worse comparator scores: 227.47663869999997
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = ugly, comparator = troll
+INFO:__main__:time to get syns and ants2.3344145999999455
+INFO:__main__:time to clean syns and ants0.0018802000004143338
+INFO:worse_comparator_generator:Encoding anchor words['wretched', 'unworthy', 'frightful', 'despicable', 'horrifying', 'atrocious', 'worthless', 'ugly', 'horrible']
+INFO:worse_comparator_generator:Encoding anchor words['beautiful']
+INFO:__main__:time to get alternative comparator words: 0.040607400000226335
+INFO:__main__:time to get worse comparator scores: 80.61959050000041
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = lazy, comparator = sloth
+INFO:__main__:time to get syns and ants0.0024224999997386476
+INFO:__main__:time to clean syns and ants0.0050822000002881396
+WARNING:__main__:No antonyms found for scale lazy
+INFO:worse_comparator_generator:Encoding anchor words['indolent', 'slothful', 'faineant', 'work-shy', 'lazy', 'otiose']
+INFO:worse_comparator_generator:Encoding anchor words['cool', 'amazing', 'smart']
+INFO:__main__:time to get alternative comparator words: 0.0019455999999991036
+INFO:__main__:time to get worse comparator scores: 79.25584030000027
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = slow, comparator = snail
+INFO:__main__:time to get syns and ants0.03011400000013964
+INFO:__main__:time to clean syns and ants0.005134600000019418
+INFO:worse_comparator_generator:Encoding anchor words['tedious', 'dense', 'slow', 'boring', 'sluggish', 'tardily', 'deadening', 'ho-hum', 'decelerate', 'retard', 'slacken', 'irksome']
+INFO:worse_comparator_generator:Encoding anchor words['fast', 'accelerate', 'quickly']
+INFO:__main__:time to get alternative comparator words: 0.005535999999665364
+INFO:__main__:time to get worse comparator scores: 82.28695770000013
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = slow, comparator = snail
+INFO:__main__:time to get syns and ants2.33540929999981
+INFO:__main__:time to clean syns and ants0.0022244000001592212
+INFO:worse_comparator_generator:Encoding anchor words['decelerate', 'slow', 'dense', 'ho-hum', 'boring', 'tardily', 'tedious', 'retard', 'slacken', 'irksome', 'sluggish', 'deadening']
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = slow, comparator = snail
+INFO:__main__:time to get syns and ants2.3137557999998535
+INFO:__main__:time to clean syns and ants0.0008180999993783189
+INFO:worse_comparator_generator:Encoding anchor words['retard', 'tardily', 'irksome', 'slacken', 'tedious', 'sluggish', 'boring', 'decelerate', 'ho-hum', 'deadening', 'slow', 'dense']
+INFO:worse_comparator_generator:Encoding anchor words['fast', 'quickly', 'accelerate']
+INFO:__main__:time to get alternative comparator words: 0.040750399999524234
+INFO:__main__:time to get worse comparator scores: 75.98761809999996
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = annoying, comparator = fly
+INFO:__main__:time to get syns and ants0.002265600000100676
+INFO:__main__:time to clean syns and ants0.002252799999951094
+WARNING:__main__:No antonyms found for scale annoying
+INFO:worse_comparator_generator:Encoding anchor words['nettle', 'vexation', 'irritate', 'bother', 'galling', 'pestering', 'annoy', 'pestiferous', 'rag', 'plaguey']
+INFO:worse_comparator_generator:Encoding anchor words['smart', 'cool', 'amazing']
+INFO:__main__:time to get alternative comparator words: 0.006548299999849405
+INFO:__main__:time to get worse comparator scores: 86.62626249999994
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = messy, comparator = pig
+INFO:__main__:time to get syns and ants0.0012526999998954125
+INFO:__main__:time to clean syns and ants0.004403700000693789
+WARNING:__main__:No antonyms found for scale messy
+INFO:worse_comparator_generator:Encoding anchor words['messy']
+INFO:worse_comparator_generator:Encoding anchor words['smart', 'cool', 'amazing']
+INFO:__main__:time to get alternative comparator words: 0.008342000000084226
+INFO:__main__:time to get worse comparator scores: 77.43397610000011
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = slow, comparator = snail
+INFO:__main__:time to get syns and ants0.0013232999999672757
+INFO:__main__:time to clean syns and ants0.005127200000060839
+INFO:worse_comparator_generator:Encoding anchor words['retard', 'tardily', 'irksome', 'slacken', 'tedious', 'sluggish', 'boring', 'decelerate', 'ho-hum', 'deadening', 'slow', 'dense']
+INFO:worse_comparator_generator:Encoding anchor words['fast', 'quickly', 'accelerate']
+INFO:__main__:time to get alternative comparator words: 0.0019876999995176448
+INFO:__main__:time to get worse comparator scores: 75.41242550000061
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = annoying, comparator = fly
+INFO:__main__:time to get syns and ants0.000727300000107789
+INFO:__main__:time to clean syns and ants0.005993300000227464
+WARNING:__main__:No antonyms found for scale annoying
+INFO:worse_comparator_generator:Encoding anchor words['nettle', 'vexation', 'irritate', 'bother', 'galling', 'pestering', 'annoy', 'pestiferous', 'rag', 'plaguey']
+INFO:worse_comparator_generator:Encoding anchor words['smart', 'cool', 'amazing']
+INFO:__main__:time to get alternative comparator words: 0.0008182999999917229
+INFO:__main__:time to get worse comparator scores: 77.97679789999984
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = messy, comparator = pig
+INFO:__main__:time to get syns and ants0.0004897999997410807
+INFO:__main__:time to clean syns and ants0.00048290000086126383
+WARNING:__main__:No antonyms found for scale messy
+INFO:worse_comparator_generator:Encoding anchor words['messy']
+INFO:worse_comparator_generator:Encoding anchor words['smart', 'cool', 'amazing']
+INFO:__main__:time to get alternative comparator words: 0.0005734000005759299
+INFO:__main__:time to get worse comparator scores: 77.36040019999928
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = slow, comparator = snail
+INFO:__main__:time to get syns and ants0.0007189999996626284
+INFO:__main__:time to clean syns and ants0.006356700000651472
+INFO:worse_comparator_generator:Encoding anchor words['retard', 'tardily', 'irksome', 'slacken', 'tedious', 'sluggish', 'boring', 'decelerate', 'ho-hum', 'deadening', 'slow', 'dense']
+INFO:worse_comparator_generator:Encoding anchor words['fast', 'quickly', 'accelerate']
+INFO:__main__:time to get alternative comparator words: 0.0009079000001293025
+INFO:__main__:time to get worse comparator scores: 88.11760250000043
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = annoying, comparator = fly
+INFO:__main__:time to get syns and ants0.0006765999996787286
+INFO:__main__:time to clean syns and ants0.0019523000000845059
+WARNING:__main__:No antonyms found for scale annoying
+INFO:worse_comparator_generator:Encoding anchor words['nettle', 'vexation', 'irritate', 'bother', 'galling', 'pestering', 'annoy', 'pestiferous', 'rag', 'plaguey']
+INFO:worse_comparator_generator:Encoding anchor words['smart', 'cool', 'amazing']
+INFO:__main__:time to get alternative comparator words: 0.0007850000001781154
+INFO:__main__:time to get worse comparator scores: 77.4527709999993
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = messy, comparator = pig
+INFO:__main__:time to get syns and ants0.0004926999999952386
+INFO:__main__:time to clean syns and ants0.0004984999995940598
+WARNING:__main__:No antonyms found for scale messy
+INFO:worse_comparator_generator:Encoding anchor words['messy']
+INFO:worse_comparator_generator:Encoding anchor words['smart', 'cool', 'amazing']
+INFO:__main__:time to get alternative comparator words: 0.0009440000003451132
+INFO:__main__:time to get worse comparator scores: 76.43026000000009
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = ugly, comparator = troll
+INFO:__main__:time to get syns and ants2.3232134000008955
+INFO:__main__:time to clean syns and ants0.0004425999995874008
+INFO:__main__:time to get alternative comparator words: 0.040616800000861986
+INFO:__main__:time to get worse comparator scores: 2.5348447999986092
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = ugly, comparator = troll
+INFO:__main__:time to get syns and ants2.311632799999643
+INFO:__main__:time to clean syns and ants0.00044829999933426734
+INFO:__main__:time to get alternative comparator words: 0.04097799999908602
+INFO:__main__:time to get worse comparator scores: 0.32542740000099
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = lazy, comparator = sloth
+INFO:__main__:time to get syns and ants0.00024020000091695692
+INFO:__main__:time to clean syns and ants0.00020760000006703194
+WARNING:__main__:No antonyms found for scale lazy
+INFO:__main__:time to get alternative comparator words: 0.00069199999961711
+INFO:__main__:time to get worse comparator scores: 0.2581840999991982
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = slow, comparator = snail
+INFO:__main__:time to get syns and ants0.010736800000813673
+INFO:__main__:time to clean syns and ants0.000669999999445281
+INFO:__main__:time to get alternative comparator words: 0.0010672999997041188
+INFO:__main__:time to get worse comparator scores: 0.33689220000087516
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = annoying, comparator = fly
+INFO:__main__:time to get syns and ants0.00034980000054929405
+INFO:__main__:time to clean syns and ants0.0014477999993687263
+WARNING:__main__:No antonyms found for scale annoying
+INFO:__main__:time to get alternative comparator words: 0.001586200000019744
+INFO:__main__:time to get worse comparator scores: 0.37390880000020843
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = messy, comparator = pig
+INFO:__main__:time to get syns and ants0.00015329999951063655
+INFO:__main__:time to clean syns and ants0.00012830000014218967
+WARNING:__main__:No antonyms found for scale messy
+INFO:__main__:time to get alternative comparator words: 0.0012864000000263331
+INFO:__main__:time to get worse comparator scores: 0.33819859999857727
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = ugly, comparator = troll
+INFO:__main__:time to get syns and ants4.670000089390669e-05
+INFO:__main__:time to clean syns and ants0.00032420000025012996
+INFO:__main__:time to get alternative comparator words: 0.00013899999976274557
+INFO:__main__:time to get worse comparator scores: 0.23070199999892793
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = lazy, comparator = sloth
+INFO:__main__:time to get syns and ants4.290000106266234e-05
+INFO:__main__:time to clean syns and ants0.00021890000061830506
+WARNING:__main__:No antonyms found for scale lazy
+INFO:__main__:time to get alternative comparator words: 0.00011830000039481092
+INFO:__main__:time to get worse comparator scores: 0.21793459999935294
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = slow, comparator = snail
+INFO:__main__:time to get syns and ants7.510000068577938e-05
+INFO:__main__:time to clean syns and ants0.0006362000003719004
+INFO:__main__:time to get alternative comparator words: 0.00014010000086273067
+INFO:__main__:time to get worse comparator scores: 0.27006859999892185
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = annoying, comparator = fly
+INFO:__main__:time to get syns and ants5.909999890718609e-05
+INFO:__main__:time to clean syns and ants0.0006173000001581386
+WARNING:__main__:No antonyms found for scale annoying
+INFO:__main__:time to get alternative comparator words: 0.0002715999999054475
+INFO:__main__:time to get worse comparator scores: 0.3577415999989171
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = messy, comparator = pig
+INFO:__main__:time to get syns and ants3.590000051190145e-05
+INFO:__main__:time to clean syns and ants0.00013159999980416615
+WARNING:__main__:No antonyms found for scale messy
+INFO:__main__:time to get alternative comparator words: 0.00021969999943394214
+INFO:__main__:time to get worse comparator scores: 0.3033047999997507
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = ugly, comparator = troll
+INFO:__main__:time to get syns and ants6.160000157251488e-05
+INFO:__main__:time to clean syns and ants0.00034419999974488746
+INFO:__main__:time to get alternative comparator words: 0.00014270000065153
+INFO:__main__:time to get worse comparator scores: 0.23397379999914847
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = lazy, comparator = sloth
+INFO:__main__:time to get syns and ants3.710000055434648e-05
+INFO:__main__:time to clean syns and ants0.0002119999990100041
+WARNING:__main__:No antonyms found for scale lazy
+INFO:__main__:time to get alternative comparator words: 0.00011410000115574803
+INFO:__main__:time to get worse comparator scores: 0.20345069999893894
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = slow, comparator = snail
+INFO:__main__:time to get syns and ants8.110000089800451e-05
+INFO:__main__:time to clean syns and ants0.0006549999998242129
+INFO:__main__:time to get alternative comparator words: 0.0001533999984530965
+INFO:__main__:time to get worse comparator scores: 0.2633802000000287
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = annoying, comparator = fly
+INFO:__main__:time to get syns and ants5.760000021837186e-05
+INFO:__main__:time to clean syns and ants0.0005856999996467493
+WARNING:__main__:No antonyms found for scale annoying
+INFO:__main__:time to get alternative comparator words: 0.0002418000003672205
+INFO:__main__:time to get worse comparator scores: 0.33956249999937427
+INFO:template_processor:Detected variables: template = 0, subject = You, scale = messy, comparator = pig
+INFO:__main__:time to get syns and ants3.3599999369471334e-05
+INFO:__main__:time to clean syns and ants0.00013100000069243833
+WARNING:__main__:No antonyms found for scale messy
+INFO:__main__:time to get alternative comparator words: 0.0002187000009143958
+INFO:__main__:time to get worse comparator scores: 0.3149075000001176

@@ -17,7 +17,7 @@ import re
     # 2c. Concreteness / imagery: does the word evoke a clear mental image? dumb as carpet does, dumb as a ballast less so.         Y/N
     # 3. Preference: Which do you like best from the list?
 
-fields = ["insult", "scale", "ants_found", "model", "word", "Relevance", "Severity", "Humor", "Concreteness"]
+fields = ["insult", "scale", "ants_found", "model", "word", "Relevance", "Severity", "Humor", "Concreteness","Syn- antonym gen time","Syn- antonym cleaning time", "Comparator gen time","Comparator choose time"]
 
 questions = [
     ("Relevance (scale 1-5): ", "int"),
@@ -128,7 +128,7 @@ def get_input(prompt, input_type="int", min_val=1, max_val=5):
 
 
 # ---------------------------------- Run Evaluation -----------------------------------------
-def run_evaluation(ins, insult_scale, ants_found, model_name, worse_comparator_words, filename):
+def run_evaluation(ins, insult_scale, ants_found, model_name, worse_comparator_words, filename,syn_ant_speed,clean_syn_ant_speed,alt_words_speed,worse_comparator_speed):
     file_exists = os.path.exists(filename)
 
     with open (filename, "a", newline="", encoding='utf-8') as f:
@@ -164,6 +164,10 @@ def run_evaluation(ins, insult_scale, ants_found, model_name, worse_comparator_w
                 "Severity": answers["Severity (scale 1-5): "],
                 "Humor": answers["Humor (scale 1-5): "],
                 "Concreteness": answers["Concreteness (Y/N): "],
+                "Syn- antonym gen time": syn_ant_speed,
+                "Syn- antonym cleaning time": clean_syn_ant_speed,
+                "Comparator gen time": alt_words_speed,
+                "Comparator choose time": worse_comparator_speed,
             })
             
         preference = int(input(
@@ -181,5 +185,9 @@ def run_evaluation(ins, insult_scale, ants_found, model_name, worse_comparator_w
             "Severity": "",
             "Humor": "",
             "Concreteness": "",
+            "Syn- antonym gen time": syn_ant_speed,
+            "Syn- antonym cleaning time": clean_syn_ant_speed,
+            "Comparator gen time": alt_words_speed,
+            "Comparator choose time": worse_comparator_speed,
         })
     return True
