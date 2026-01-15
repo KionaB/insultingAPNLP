@@ -115,7 +115,7 @@ def make_scale_list(words1, words2, word_list, vec_model='wordnet'):
             new_model = fasttext.load_model('cc.en.300.bin')
             deter = new_model.get_word_vector(word)
         else:
-            raise Exception("You did not input a correct model, please pick 'wordnet' or 'fasttext300'")
+            raise Exception("You did not input a correct model, please pick 'wordnet' or 'fasttext', you entered: ", vec_model)
         deter = deter / np.linalg.norm(deter)
 
         d, proj, t = proj_meas(vec1, vec2, deter)

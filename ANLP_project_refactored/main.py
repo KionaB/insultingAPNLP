@@ -34,7 +34,7 @@ def generate_comeback(insult,mode):
     if not ants_found:
         logger.warning('No antonyms found for scale ' + str(insult_scale))
     words_for_comparator = get_close(comparator)
-    worse_comparator_words, scores = get_worse_comparator(syns, ants, words_for_comparator, template, pca_method=PCA_method, mid_adjust=True, vec_model='fasttext300')
+    worse_comparator_words, scores = get_worse_comparator(syns, ants, words_for_comparator, template, pca_method=PCA_method, mid_adjust=True, vec_model='fasttext')
     worse_comparator = pick_insult(worse_comparator_words, scores)
     logger.info("Increased step comparator: " + worse_comparator)
     comeback = comeback_builder_from_template(insult, template, subject, worse_comparator, insult_scale)
@@ -134,6 +134,7 @@ And finally, choosing which word ranked best overall:
         for ins in remaining_insults:
             template, subject, insult_scale, comparator = get_insult_from_template(ins)
             syns, ants, ants_found = get_scale_syns_and_opposites(insult_scale, 'wordnet')
+            syns, ants = clean_syn_ant(syns), clean_syn_ant(ants)
             print('synonyms: ', syns)
             print('antonyms: ', ants)
             if insult_scale is None:
@@ -141,7 +142,7 @@ And finally, choosing which word ranked best overall:
             if not ants_found:
                 logger.warning('No antonyms found for scale ' + str(insult_scale))
             words_for_comparator = get_close(comparator)
-            worse_comparator_words, scores = get_worse_comparator(syns, ants, words_for_comparator, template, pca_method=PCA_method) # Important This also has 2 extra args mid_adjust: bool, vec_model='fasttext'
+            worse_comparator_words, scores = get_worse_comparator(syns, ants, words_for_comparator, template, pca_method=PCA_method, mid_adjust=True, vec_model='fasttext') # Important This also has 2 extra args mid_adjust: bool, vec_model='fasttext'
             print(f"Using evaluation file: {filename}")
             print(f"Remaining insults left to evaluate: {remaining_insults}")
             completed = run_evaluation(ins, insult_scale, ants_found, model_name, worse_comparator_words, filename)
