@@ -172,7 +172,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Determine insult template &amp;amp; extract subject, insult scale, comparator" vertex="1">
-          <mxGeometry height="60" width="120" x="1251" y="1320" as="geometry" />
+          <mxGeometry height="60" width="120" x="1179.5" y="530" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-8" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="NZ6G-HlW0jbDJGNaf6Fv-14" value="">
           <mxGeometry relative="1" as="geometry" />
@@ -191,13 +191,13 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-12" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Is insult scale None" vertex="1">
-          <mxGeometry height="60" width="120" x="1511" y="1320" as="geometry" />
+          <mxGeometry height="60" width="120" x="1439.5" y="530" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-13" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-21">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-14" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Insult scale = &quot;terrible&quot;" vertex="1">
-          <mxGeometry height="60" width="120" x="1711" y="1320" as="geometry" />
+          <mxGeometry height="60" width="120" x="1639.5" y="530" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-15" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="NZ6G-HlW0jbDJGNaf6Fv-25" value="">
           <mxGeometry relative="1" as="geometry" />
@@ -217,7 +217,7 @@
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-19" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-50" value="">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1741" y="1540" as="targetPoint" />
+            <mxPoint x="1669.5" y="750" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-20" connectable="0" parent="NZ6G-HlW0jbDJGNaf6Fv-19" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Extremes" vertex="1">
@@ -226,15 +226,15 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-21" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Used mode?" vertex="1">
-          <mxGeometry height="60" width="120" x="1511" y="1460" as="geometry" />
+          <mxGeometry height="60" width="120" x="1439.5" y="670" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-22" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-33" value="">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="1361" y="1570" />
-              <mxPoint x="1401" y="1570" />
+              <mxPoint x="1289.5" y="780" />
+              <mxPoint x="1329.5" y="780" />
             </Array>
-            <mxPoint x="1411" y="1620" as="targetPoint" />
+            <mxPoint x="1339.5" y="830" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-23" connectable="0" parent="NZ6G-HlW0jbDJGNaf6Fv-22" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Synsets" vertex="1">
@@ -245,19 +245,19 @@
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-24" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="NZ6G-HlW0jbDJGNaf6Fv-30" value="">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="1361" y="1570" />
-              <mxPoint x="1261" y="1570" />
+              <mxPoint x="1289.5" y="780" />
+              <mxPoint x="1189.5" y="780" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-25" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Get wordnet synsets of scale" vertex="1">
-          <mxGeometry height="60" width="120" x="1301" y="1460" as="geometry" />
+          <mxGeometry height="60" width="120" x="1229.5" y="670" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-26" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="NZ6G-HlW0jbDJGNaf6Fv-41" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-27" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Get 10 nearest scale neighbours" vertex="1">
-          <mxGeometry height="60" width="120" x="1531" y="1600" as="geometry" />
+          <mxGeometry height="60" width="120" x="1459.5" y="810" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-28" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-38" value="">
           <mxGeometry relative="1" as="geometry" />
@@ -268,7 +268,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-30" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Make synonym list" vertex="1">
-          <mxGeometry height="60" width="120" x="1201" y="1630" as="geometry" />
+          <mxGeometry height="60" width="120" x="1129.5" y="840" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-31" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-38">
           <mxGeometry relative="1" as="geometry" />
@@ -279,7 +279,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-33" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Make antonym list" vertex="1">
-          <mxGeometry height="60" width="120" x="1341" y="1630" as="geometry" />
+          <mxGeometry height="60" width="120" x="1269.5" y="840" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-34" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="NZ6G-HlW0jbDJGNaf6Fv-65" value="">
           <mxGeometry relative="1" as="geometry" />
@@ -298,7 +298,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-38" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Did we find enough antonyms?" vertex="1">
-          <mxGeometry height="60" width="120" x="1271" y="1770" as="geometry" />
+          <mxGeometry height="60" width="120" x="1199.5" y="980" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-39" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-45">
           <mxGeometry relative="1" as="geometry" />
@@ -307,14 +307,14 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-41" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Get synsets of scale neighbours" vertex="1">
-          <mxGeometry height="60" width="120" x="1531" y="1700" as="geometry" />
+          <mxGeometry height="60" width="120" x="1459.5" y="910" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-42" connectable="0" parent="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Synsets" vertex="1">
-          <mxGeometry x="1595" y="1780" as="geometry" />
+          <mxGeometry x="1523.5" y="990" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-43" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-72" value="">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1561" y="1988" as="targetPoint" />
+            <mxPoint x="1489.5" y="1198" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-44" connectable="0" parent="NZ6G-HlW0jbDJGNaf6Fv-43" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Scale synonyms" vertex="1">
@@ -323,11 +323,11 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-45" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Make synonym list" vertex="1">
-          <mxGeometry height="60" width="120" x="1451" y="1848" as="geometry" />
+          <mxGeometry height="60" width="120" x="1379.5" y="1058" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-46" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-72">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1621" y="1988" as="targetPoint" />
+            <mxPoint x="1549.5" y="1198" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-47" connectable="0" parent="NZ6G-HlW0jbDJGNaf6Fv-46" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Scale antonyms" vertex="1">
@@ -336,31 +336,31 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-48" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Make antonym list" vertex="1">
-          <mxGeometry height="60" width="120" x="1601" y="1848" as="geometry" />
+          <mxGeometry height="60" width="120" x="1529.5" y="1058" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-49" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="NZ6G-HlW0jbDJGNaf6Fv-53" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-50" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Get fasttext 10 nearest scale neighbours" vertex="1">
-          <mxGeometry height="60" width="120" x="1831" y="1490" as="geometry" />
+          <mxGeometry height="60" width="120" x="1759.5" y="700" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-51" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-57">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1821" y="1738" as="targetPoint" />
+            <mxPoint x="1749.5" y="948" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-52" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-60">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-53" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Get synsets of scale neighbours" vertex="1">
-          <mxGeometry height="60" width="120" x="1831" y="1590" as="geometry" />
+          <mxGeometry height="60" width="120" x="1759.5" y="800" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-54" connectable="0" parent="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Synsets" vertex="1">
-          <mxGeometry x="1895" y="1670" as="geometry" />
+          <mxGeometry x="1823.5" y="880" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-55" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.25;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-63" value="">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1821" y="1798" as="sourcePoint" />
+            <mxPoint x="1749.5" y="1008" as="sourcePoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-56" connectable="0" parent="NZ6G-HlW0jbDJGNaf6Fv-55" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Scale synonyms" vertex="1">
@@ -369,7 +369,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-57" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Make synonym list" vertex="1">
-          <mxGeometry height="60" width="120" x="1731" y="1730" as="geometry" />
+          <mxGeometry height="60" width="120" x="1659.5" y="940" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-58" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-60" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-63">
           <mxGeometry relative="1" as="geometry" />
@@ -380,7 +380,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-60" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Make antonym list" vertex="1">
-          <mxGeometry height="60" width="120" x="1901" y="1738" as="geometry" />
+          <mxGeometry height="60" width="120" x="1829.5" y="948" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-61" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-63" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="NZ6G-HlW0jbDJGNaf6Fv-79" value="">
           <mxGeometry relative="1" as="geometry" />
@@ -391,19 +391,19 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-63" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Create vectors of the synonym and antonym lists" vertex="1">
-          <mxGeometry height="60" width="120" x="1831" y="1878" as="geometry" />
+          <mxGeometry height="60" width="120" x="1759.5" y="1088" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-64" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-65" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-67">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-65" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Add &#39;amazing&#39;, &#39;cool&#39;, &#39;smart&#39; to antonym list" vertex="1">
-          <mxGeometry height="60" width="120" x="1121" y="1848" as="geometry" />
+          <mxGeometry height="60" width="120" x="1049.5" y="1058" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-66" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-67" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-92">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-67" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Return synonym &amp;amp; antonym lists" vertex="1">
-          <mxGeometry height="60" width="120" x="1271" y="1910" as="geometry" />
+          <mxGeometry height="60" width="120" x="1199.5" y="1120" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-68" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-72" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="NZ6G-HlW0jbDJGNaf6Fv-74" value="">
           <mxGeometry relative="1" as="geometry" />
@@ -422,19 +422,19 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-72" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Did we find enough antonyms?" vertex="1">
-          <mxGeometry height="60" width="120" x="1531" y="2000" as="geometry" />
+          <mxGeometry height="60" width="120" x="1459.5" y="1210" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-73" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-74" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-76">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-74" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Add &#39;amazing&#39;, &#39;cool&#39;, &#39;smart&#39; to antonym list" vertex="1">
-          <mxGeometry height="60" width="120" x="1381" y="2078" as="geometry" />
+          <mxGeometry height="60" width="120" x="1309.5" y="1288" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-75" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-76" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-92">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-76" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Return synonym &amp;amp; antonym lists" vertex="1">
-          <mxGeometry height="60" width="120" x="1531" y="2140" as="geometry" />
+          <mxGeometry height="60" width="120" x="1459.5" y="1350" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-77" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-79" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="NZ6G-HlW0jbDJGNaf6Fv-82" value="">
           <mxGeometry relative="1" as="geometry" />
@@ -445,7 +445,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-79" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Detemine line from one to the other vector" vertex="1">
-          <mxGeometry height="60" width="120" x="1831" y="1980" as="geometry" />
+          <mxGeometry height="60" width="120" x="1759.5" y="1190" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-80" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-82" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="NZ6G-HlW0jbDJGNaf6Fv-85" value="">
           <mxGeometry relative="1" as="geometry" />
@@ -456,7 +456,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-82" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Slide vectors to extremes of line &amp;amp; normalise" vertex="1">
-          <mxGeometry height="60" width="120" x="1831" y="2090" as="geometry" />
+          <mxGeometry height="60" width="120" x="1759.5" y="1300" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-83" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-85" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="NZ6G-HlW0jbDJGNaf6Fv-87" value="">
           <mxGeometry relative="1" as="geometry" />
@@ -467,13 +467,13 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-85" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Find nearest neighbour words of extreme vectors" vertex="1">
-          <mxGeometry height="60" width="120" x="1831" y="2220" as="geometry" />
+          <mxGeometry height="60" width="120" x="1759.5" y="1430" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-86" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-87" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-92">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-87" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Return extreme lists" vertex="1">
-          <mxGeometry height="60" width="120" x="1831" y="2350" as="geometry" />
+          <mxGeometry height="60" width="120" x="1759.5" y="1560" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-88" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-98" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-95" value="">
           <mxGeometry relative="1" as="geometry" />
@@ -486,9 +486,9 @@
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-90" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-92" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="NZ6G-HlW0jbDJGNaf6Fv-120" value="">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="1101" y="2150" />
-              <mxPoint x="1101" y="2490" />
-              <mxPoint x="2151" y="2490" />
+              <mxPoint x="1029.5" y="1360" />
+              <mxPoint x="1029.5" y="1700" />
+              <mxPoint x="2079.5" y="1700" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -498,23 +498,23 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-92" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Clean scale synonym antonym list to improve variety" vertex="1">
-          <mxGeometry height="60" width="120" x="1111" y="2120" as="geometry" />
+          <mxGeometry height="60" width="120" x="1039.5" y="1330" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-93" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-95" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="NZ6G-HlW0jbDJGNaf6Fv-105" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-94" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-95" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-109">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1981" y="1310" as="sourcePoint" />
-            <mxPoint x="2271" y="1238.75" as="targetPoint" />
+            <mxPoint x="1909.5" y="520" as="sourcePoint" />
+            <mxPoint x="2199.5" y="448.75" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-95" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Get wordnet synsets of comparator" vertex="1">
-          <mxGeometry height="60" width="120" x="1851" y="1210" as="geometry" />
+          <mxGeometry height="60" width="120" x="1779.5" y="420" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-96" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-98" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-160">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="2781" y="1320" as="targetPoint" />
+            <mxPoint x="2709.5" y="530" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-97" connectable="0" parent="NZ6G-HlW0jbDJGNaf6Fv-96" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Template" vertex="1">
@@ -523,7 +523,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-98" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Comeback function" vertex="1">
-          <mxGeometry height="60" width="120" x="1461" y="1210" as="geometry" />
+          <mxGeometry height="60" width="120" x="1389.5" y="420" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-99" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-98" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.425;entryY=0.067;entryDx=0;entryDy=0;entryPerimeter=0;" target="NZ6G-HlW0jbDJGNaf6Fv-12">
           <mxGeometry relative="1" as="geometry" />
@@ -550,10 +550,10 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-105" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Get hypernyms of synsets" vertex="1">
-          <mxGeometry height="60" width="120" x="2061" y="1280" as="geometry" />
+          <mxGeometry height="60" width="120" x="1989.5" y="490" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-106" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="synsets" vertex="1">
-          <mxGeometry height="30" width="60" x="2015" y="1220" as="geometry" />
+          <mxGeometry height="30" width="60" x="1943.5" y="430" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-107" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-109" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-115">
           <mxGeometry relative="1" as="geometry" />
@@ -564,7 +564,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-109" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Make synonym list" vertex="1">
-          <mxGeometry height="60" width="120" x="2241" y="1210" as="geometry" />
+          <mxGeometry height="60" width="120" x="2169.5" y="420" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-110" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-112" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-115">
           <mxGeometry relative="1" as="geometry" />
@@ -575,7 +575,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-112" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Get hyponyms of hypernyms" vertex="1">
-          <mxGeometry height="60" width="120" x="2061" y="1420" as="geometry" />
+          <mxGeometry height="60" width="120" x="1989.5" y="630" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-113" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-115" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="NZ6G-HlW0jbDJGNaf6Fv-118" value="">
           <mxGeometry relative="1" as="geometry" />
@@ -586,7 +586,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-115" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Add to list of alternative words" vertex="1">
-          <mxGeometry height="60" width="120" x="2351" y="1310" as="geometry" />
+          <mxGeometry height="60" width="120" x="2279.5" y="520" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-116" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-118" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-120">
           <mxGeometry relative="1" as="geometry" />
@@ -597,13 +597,13 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-118" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Remove blacklisted words" vertex="1">
-          <mxGeometry height="60" width="120" x="2351" y="1560" as="geometry" />
+          <mxGeometry height="60" width="120" x="2279.5" y="770" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-119" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-120" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="NZ6G-HlW0jbDJGNaf6Fv-125" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-120" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Ranking method" vertex="1">
-          <mxGeometry height="60" width="120" x="2101" y="2200" as="geometry" />
+          <mxGeometry height="60" width="120" x="2029.5" y="1410" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-121" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-125" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="NZ6G-HlW0jbDJGNaf6Fv-127" value="">
           <mxGeometry relative="1" as="geometry" />
@@ -622,13 +622,13 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-125" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="PCA?" vertex="1">
-          <mxGeometry height="60" width="120" x="2281" y="2200" as="geometry" />
+          <mxGeometry height="60" width="120" x="2209.5" y="1410" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-126" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-127" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="NZ6G-HlW0jbDJGNaf6Fv-132" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-127" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Build scale hash" vertex="1">
-          <mxGeometry height="60" width="120" x="2281" y="2340" as="geometry" />
+          <mxGeometry height="60" width="120" x="2209.5" y="1550" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-128" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-132" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="NZ6G-HlW0jbDJGNaf6Fv-134" value="">
           <mxGeometry relative="1" as="geometry" />
@@ -647,29 +647,29 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-132" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="PCA in cache?" vertex="1">
-          <mxGeometry height="60" width="120" x="2281" y="2480" as="geometry" />
+          <mxGeometry height="60" width="120" x="2209.5" y="1690" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-133" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-134" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="NZ6G-HlW0jbDJGNaf6Fv-138" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-134" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Load cached PCA" vertex="1">
-          <mxGeometry height="60" width="120" x="2075" y="2510" as="geometry" />
+          <mxGeometry height="60" width="120" x="2003.5" y="1720" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-135" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-136" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-138">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-136" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Compute pca axis and word vectors (and store)" vertex="1">
-          <mxGeometry height="60" width="120" x="2281" y="2620" as="geometry" />
+          <mxGeometry height="60" width="120" x="2209.5" y="1830" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-137" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-138" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="NZ6G-HlW0jbDJGNaf6Fv-141" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-138" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Project word vectors onto PCA axis" vertex="1">
-          <mxGeometry height="60" width="120" x="2075" y="2620" as="geometry" />
+          <mxGeometry height="60" width="120" x="2003.5" y="1830" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-139" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-141" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-157">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="2671" y="2720" as="targetPoint" />
+            <mxPoint x="2599.5" y="1930" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-140" connectable="0" parent="NZ6G-HlW0jbDJGNaf6Fv-139" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Sorted comparator list" vertex="1">
@@ -678,42 +678,42 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-141" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Sort list of comparator words along axis" vertex="1">
-          <mxGeometry height="60" width="120" x="1875" y="2620" as="geometry" />
+          <mxGeometry height="60" width="120" x="1803.5" y="1830" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-142" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-144" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="NZ6G-HlW0jbDJGNaf6Fv-146" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-143" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="NZ6G-HlW0jbDJGNaf6Fv-150" value="">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="2341" y="2160" as="sourcePoint" />
+            <mxPoint x="2269.5" y="1370" as="sourcePoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-144" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Load wordnet or fasttext model based on mode" vertex="1">
-          <mxGeometry height="60" width="120" x="2281" y="2060" as="geometry" />
+          <mxGeometry height="60" width="120" x="2209.5" y="1270" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-145" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-146" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="NZ6G-HlW0jbDJGNaf6Fv-148" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-146" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Encode comparator words into vectors" vertex="1">
-          <mxGeometry height="60" width="120" x="2481" y="2060" as="geometry" />
+          <mxGeometry height="60" width="120" x="2409.5" y="1270" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-147" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-148" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-152">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-148" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Encode comparator words into vectors" vertex="1">
-          <mxGeometry height="60" width="120" x="2681" y="2030" as="geometry" />
+          <mxGeometry height="60" width="120" x="2609.5" y="1240" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-149" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-150" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="NZ6G-HlW0jbDJGNaf6Fv-152" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-150" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Encode scale ends into vectors" vertex="1">
-          <mxGeometry height="60" width="120" x="2481" y="2130" as="geometry" />
+          <mxGeometry height="60" width="120" x="2409.5" y="1340" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-151" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-152" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="NZ6G-HlW0jbDJGNaf6Fv-155" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-152" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Project comparator words along scale" vertex="1">
-          <mxGeometry height="60" width="120" x="2681" y="2130" as="geometry" />
+          <mxGeometry height="60" width="120" x="2609.5" y="1340" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-153" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-155" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-157">
           <mxGeometry relative="1" as="geometry" />
@@ -724,7 +724,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-155" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Sort list of comparator words along axis" vertex="1">
-          <mxGeometry height="60" width="120" x="2681" y="2270" as="geometry" />
+          <mxGeometry height="60" width="120" x="2609.5" y="1480" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-156" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-157" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-160">
           <mxGeometry relative="1" as="geometry" />
@@ -735,11 +735,11 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-157" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Filter list to unique words" vertex="1">
-          <mxGeometry height="60" width="120" x="2691" y="2600" as="geometry" />
+          <mxGeometry height="60" width="120" x="2619.5" y="1810" as="geometry" />
         </mxCell>
-        <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-158" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-160" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" value="">
+        <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-158" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-160" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=light-dark(#000000,#FF0800);" value="">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="2841" y="1350" as="targetPoint" />
+            <mxPoint x="2769.5" y="560" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-159" connectable="0" parent="NZ6G-HlW0jbDJGNaf6Fv-158" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Comeback" vertex="1">
@@ -748,12 +748,12 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-160" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Build comeback using original scale and subject with new comparator" vertex="1">
-          <mxGeometry height="60" width="120" x="2599" y="1320" as="geometry" />
+          <mxGeometry height="60" width="120" x="2527.5" y="530" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-161" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="NZ6G-HlW0jbDJGNaf6Fv-7" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
-            <mxPoint x="1030" y="1350" as="sourcePoint" />
-            <mxPoint x="1880" y="1090" as="targetPoint" />
+            <mxPoint x="958.5" y="560" as="sourcePoint" />
+            <mxPoint x="1808.5" y="300" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-162" connectable="0" parent="NZ6G-HlW0jbDJGNaf6Fv-161" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Insult, mode, pca" vertex="1">
@@ -769,11 +769,11 @@
             <mxPoint x="-42" y="1" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-164" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;div&gt;Generate next comeback*&lt;/div&gt;" vertex="1">
+        <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-164" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000,#FF0000);" value="&lt;div&gt;Generate next comeback*&lt;/div&gt;" vertex="1">
           <mxGeometry height="60" width="120" x="970" y="160" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-167" parent="1" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;* Comeback Generation block&lt;/h1&gt;&lt;p&gt;This block shows the steps used each time an insult is evaluated&lt;/p&gt;" vertex="1">
-          <mxGeometry height="120" width="359" x="1001.5" y="1110" as="geometry" />
+          <mxGeometry height="120" width="359" x="930" y="320" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-171" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-169" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="NZ6G-HlW0jbDJGNaf6Fv-170" value="">
           <mxGeometry relative="1" as="geometry" />
@@ -783,7 +783,7 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-169" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Generate comeback *" vertex="1">
+        <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-169" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000,#FF0000);" value="Generate comeback *" vertex="1">
           <mxGeometry height="60" width="120" x="510" y="800" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-173" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-170" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="pK3Rv9gkBrRFc2nx50v4-23">
@@ -812,7 +812,7 @@
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-189" edge="1" parent="1" source="NZ6G-HlW0jbDJGNaf6Fv-179" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="NZ6G-HlW0jbDJGNaf6Fv-188" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-179" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Get top 5 comparator words for pre-determined insults" vertex="1">
+        <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-179" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000,#1EFFBB);" value="Get top 5 comparator words for pre-determined insults" vertex="1">
           <mxGeometry height="60" width="120" x="310" y="690" as="geometry" />
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-185" parent="1" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;" value="Top 5 comparator words acquired by using comeback generation* steps until ranked comparator list is generated" vertex="1">
@@ -895,6 +895,41 @@
         </mxCell>
         <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-210" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Store eval results &amp;amp; end" vertex="1">
           <mxGeometry height="60" width="120" x="310" y="1250" as="geometry" />
+        </mxCell>
+        <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-214" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;fillColor=#a20025;strokeColor=light-dark(#6F0000,#FF0202);" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="2890" y="290" as="sourcePoint" />
+            <mxPoint x="910" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-215" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;fillColor=#a20025;strokeColor=light-dark(#6F0000,#FF0202);" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="910" y="2003" as="sourcePoint" />
+            <mxPoint x="910" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-216" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;fillColor=#a20025;strokeColor=light-dark(#6F0000,#FF0202);" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="2890" y="2003" as="sourcePoint" />
+            <mxPoint x="2890" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-217" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;fillColor=#a20025;strokeColor=light-dark(#6F0000,#FF0202);" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="2890" y="2000" as="sourcePoint" />
+            <mxPoint x="910" y="2000" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-220" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;strokeColor=light-dark(#000000,#02FFEE);" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="2589" y="830" as="sourcePoint" />
+            <mxPoint x="2819" y="830" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NZ6G-HlW0jbDJGNaf6Fv-221" connectable="0" parent="NZ6G-HlW0jbDJGNaf6Fv-220" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Ranked comparator list for evaluation" vertex="1">
+          <mxGeometry relative="1" x="0.3913" y="-3" as="geometry">
+            <mxPoint x="-39" y="7" as="offset" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
