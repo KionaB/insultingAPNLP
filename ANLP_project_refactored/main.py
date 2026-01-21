@@ -18,11 +18,9 @@ logging.basicConfig(filename='insult_generator.log', level=logging.INFO)
 
 #TODO: Create statistics for the final evaluation csv file  Nathan
 #TODO: for in report, add syn ants example list, everything for a couple example insults for in the appendices. 
+#TODO: result must pick random synonym to make it more 'creative'
 
-#TODO: runtime toevoegen                                    Kiona
-#TODO: implement mode changes
-#TODO: remove words ending on -ness
-#TODO: mooie plaatjes van hirarchy ?
+#TODO: mooie plaatjes van hirarchy ?                        Kiona
 
 def generate_comeback(insult,mode):
     """generate a comeback for any given insult"""
@@ -34,10 +32,12 @@ def generate_comeback(insult,mode):
     if not ants_found:
         logger.warning('No antonyms found for scale ' + str(insult_scale))
     words_for_comparator = get_close(comparator)
+    print('synonyms: ', syns)
+    print('antonyms: ', ants)
     worse_comparator_words, scores = get_worse_comparator(syns, ants, insult_scale, words_for_comparator, 
                                                             pca_method=PCA_method, mid_adjust=True, vec_model=mode, 
                                                             similarity_threshold = 2, max_words = None) 
-    worse_comparator = pick_insult(worse_comparator_words, scores)
+    worse_comparator = pick_insult(worse_comparator_words)
     logger.info("Increased step comparator: " + worse_comparator)
     comeback = comeback_builder_from_template(insult, template, subject, worse_comparator, insult_scale)
     return comeback
@@ -120,11 +120,12 @@ And finally, choosing which word ranked best overall:
             print(f"Round {num} comeback: {comeback}")
             insult = comeback
     elif evaluation:
-        filename, remaining_insults = get_eval_file_and_remaining_insults(model_name)
-        modes = ['wordnet', 'fasttext', 'extremes']
+        #TODO: Loop only over wordnet+wordnet, fasttext+fasttext, and fasttext+extremes. Furthermore PCA on/off, midadjust on/off?
+        modes = ['wordnet', 'extremes']
         print("Evaluating using modes: ",str(modes))
         print("Using insults: ",str(EVAL_INSULTS))
         for m in modes:
+            filename, remaining_insults = get_eval_file_and_remaining_insults(model_name, m)
             print("Evaluating mode: ", m)
             for ins in remaining_insults:
                 template, subject, insult_scale, comparator = get_insult_from_template(ins)
@@ -144,7 +145,9 @@ And finally, choosing which word ranked best overall:
                 alt_words_start = timeit.default_timer()
                 words_for_comparator = get_close(comparator)
                 worse_comp_start_time = timeit.default_timer()
-                worse_comparator_words, scores = get_worse_comparator(syns, ants, words_for_comparator, template, pca_method=PCA_method, mid_adjust=True, vec_model='fasttext') # Important This also has 2 extra args mid_adjust: bool, vec_model='fasttext'
+                worse_comparator_words, scores = get_worse_comparator(syns, ants, insult_scale, words_for_comparator, 
+                                                            pca_method=PCA_method, mid_adjust=True, vec_model=m, 
+                                                            similarity_threshold = 2, max_words = None)
                 worse_comp_end_time = timeit.default_timer()
                 logger.info('time to get alternative comparator words: ' + str(worse_comp_start_time-alt_words_start))
                 logger.info('time to get worse comparator scores: ' + str(worse_comp_end_time-worse_comp_start_time))
@@ -156,7 +159,7 @@ And finally, choosing which word ranked best overall:
                 worse_comparator_speed = worse_comp_end_time-worse_comp_start_time
                 completed = run_evaluation(ins, insult_scale, ants_found, model_name, worse_comparator_words, filename,syn_ant_speed,clean_syn_ant_speed,alt_words_speed,worse_comparator_speed)
                 if not completed:
-                    print("Stopped evaluation for mode: "+str(mode))
+                    print("Stopped evaluation for mode: "+str(m))
                     break
 
     else: 

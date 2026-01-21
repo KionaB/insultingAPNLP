@@ -77,8 +77,6 @@ def get_worse_comparator(syns, ants, insult_scale, words_for_comparator, pca_met
         scores = scores + (t_avg - scores) * normed_dists
     
     filtered_worse_comparator = filter_worse_comparator_list(worse_comparator, insult_scale, similarity_threshold = similarity_threshold, max_words = max_words)
-    print(worse_comparator)
-    print(filtered_worse_comparator)
     return filtered_worse_comparator, scores
 
 # TODO make list option for words

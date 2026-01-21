@@ -38,9 +38,9 @@ EVAL_INSULTS = [
 ]
 
 # ---------------------- Evaluation CSV file functions ---------------------------------------
-def get_next_eval_filename(model, prefix="evaluation_log"):
+def get_next_eval_filename(model, mode ,prefix="evaluation_log"):
     """Creates filename if a new csv file must be added with icreased index"""
-    pattern = re.compile(rf"{prefix}(\d+)_{re.escape(model)}\.csv")
+    pattern = re.compile(rf"{prefix}(\d+)_{re.escape(model)}_{re.escape(mode)}\.csv")
     max_num = 0
 
     for fname in os.listdir("."):
@@ -48,12 +48,12 @@ def get_next_eval_filename(model, prefix="evaluation_log"):
         if match:
             max_num = max(max_num, int(match.group(1)))
 
-    return f"{prefix}{max_num + 1}_{model}.csv"
+    return f"{prefix}{max_num + 1}_{model}_{mode}.csv"
 
-def get_latest_eval_file(model, prefix="evaluation_log"):
+def get_latest_eval_file(model, mode, prefix="evaluation_log"):
     """Finds the most recent evalation CSV for a model
     This is important for resuming the latest evaluation instead of starting over"""
-    pattern = re.compile(rf"{prefix}(\d+)_{re.escape(model)}\.csv")
+    pattern = re.compile(rf"{prefix}(\d+)_{re.escape(model)}_{re.escape(mode)}\.csv")
     files = []
 
     for fname in os.listdir("."):
@@ -79,19 +79,19 @@ def get_evaluated_insults(csv_file):
 
     return evaluated
 
-def get_eval_file_and_remaining_insults(model):
-    latest_file = get_latest_eval_file(model)
+def get_eval_file_and_remaining_insults(model, mode):
+    latest_file = get_latest_eval_file(model, mode)
 
     # No file yet -> start fresh
     if latest_file is None:
-        new_file = get_next_eval_filename(model)
+        new_file = get_next_eval_filename(model, mode)
         return new_file, EVAL_INSULTS
     
     evaluated = get_evaluated_insults(latest_file)
 
     # evaluation complete? -> start fresh
     if set(EVAL_INSULTS).issubset(evaluated):
-        new_file = get_next_eval_filename(model)
+        new_file = get_next_eval_filename(model, mode)
         return new_file, EVAL_INSULTS
     
     # Otherwise continue from left over insults
@@ -135,9 +135,8 @@ def run_evaluation(ins, insult_scale, ants_found, model_name, worse_comparator_w
         writer = csv.DictWriter(f, fieldnames=fields)
         if not file_exists:
             writer.writeheader()
-    
-        eval_word_list = pick_eval_insult(worse_comparator_words, insult_scale, 5)
-        
+        eval_word_list = pick_eval_insult(worse_comparator_words, 5)
+
         print("\nCandidate words:")
         for i, word in enumerate(eval_word_list, start=1):
             print(f"{i}. {word}")
