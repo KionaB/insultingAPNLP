@@ -4,6 +4,7 @@ os.environ["USE_TF"] = "0"
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 import logging
 import numpy as np
+import fasttext
 from sentence_transformers import SentenceTransformer
 from transformers.utils.logging import disable_progress_bar
 from tabulate import tabulate
@@ -83,7 +84,7 @@ def get_worse_comparator(syns, ants, insult_scale, words_for_comparator, project
 def encode_anchor(words, vec_model='wordnet'):
     if vec_model == 'wordnet':
         logger.info('Encoding anchor words' + str(words))
-        vecs = model.encode(words, show_progress_bar=False)
+        vecs = model.encode(words, show_progress_bar=False, device = device)
         vecs = normalize(vecs) # I still find this step a bit suspiscious
         mean_vec = np.mean(vecs, axis=0)
         mean_vec = mean_vec / np.linalg.norm(mean_vec)
@@ -118,7 +119,7 @@ def make_scale_list(words1, words2, word_list, vec_model='wordnet'):
         new_model = fasttext.load_model('cc.en.300.bin')
     for word in word_list:
         if vec_model == 'wordnet':
-            deter = model.encode(word, show_progress_bar=False)
+            deter = model.encode(word, show_progress_bar=False, device=device)
         elif vec_model == 'fasttext':
             deter = new_model.get_word_vector(word)
         else:
