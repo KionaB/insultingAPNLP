@@ -1,17 +1,14 @@
 from nltk.corpus import wordnet
-import fasttext
-import fasttext.util
 import numpy as np
 import faiss
 
-def get_scale_syns_and_opposites(scale: str, mode='wordnet'):
+def get_scale_syns_and_opposites(scale: str, fasttext_model, mode='wordnet'):
     """Gets a scale and returns a list of synonyms and a list of antonyms
     @:arg str scale: the scale to get synonyms and antonyms of
     @returns list of synonyms and list of antonyms"""
-    def find_syn_ant_soft(scale, num_neighbours=10):
-        fasttext.util.download_model('en', if_exists='ignore')
-        model = fasttext.load_model('cc.en.300.bin')
-        neighbours = [w for _, w in model.get_nearest_neighbors(scale, num_neighbours)]
+    
+    def find_syn_ant_soft(scale, fasttext_model, num_neighbours=10):
+        neighbours = [w for _, w in fasttext_model.get_nearest_neighbors(scale, num_neighbours)]
         antonyms = []
         synonyms = []
         for nb in neighbours:
@@ -45,13 +42,13 @@ def get_scale_syns_and_opposites(scale: str, mode='wordnet'):
         return synonyms, antonyms, ants_found
 
     elif mode == 'fasttext':
-        return find_syn_ant_soft(scale)
+        return find_syn_ant_soft(scale, fasttext_model, 10)
 
     elif mode == 'extremes':
-        def extreme_neighbors(words1, words2, model, scale=10.0, k=10):
+        def extreme_neighbors(words1, words2, fasttext_model, scale=10.0, k=10):
             # word vectors
-            v1 = np.mean([model.get_word_vector(w) for w in words1], axis=0)
-            v2 = np.mean([model.get_word_vector(w) for w in words2], axis=0)
+            v1 = np.mean([fasttext_model.get_word_vector(w) for w in words1], axis=0)
+            v2 = np.mean([fasttext_model.get_word_vector(w) for w in words2], axis=0)
 
             # direction
             direction = v2 - v1
@@ -61,8 +58,8 @@ def get_scale_syns_and_opposites(scale: str, mode='wordnet'):
             extreme_pos = v2 + scale * direction
 
             # --- Build FAISS cosine index ---
-            words = model.get_words()
-            vectors = np.vstack([model.get_word_vector(w) for w in words])
+            words = fasttext_model.get_words()
+            vectors = np.vstack([fasttext_model.get_word_vector(w) for w in words])
 
             # normalize for cosine similarity
             vecs_norm = vectors / np.linalg.norm(vectors, axis=1, keepdims=True)
@@ -82,15 +79,14 @@ def get_scale_syns_and_opposites(scale: str, mode='wordnet'):
 
             return neg_neighbors, pos_neighbors
 
-        model = fasttext.load_model('cc.en.300.bin')
-        syns, ants, _ = find_syn_ant_soft(scale)
+        syns, ants, _ = find_syn_ant_soft(scale, fasttext_model, 10)
         found = True
         if not ants:
             ants = ['amazing', 'cool', 'smart']
             found = False
-        neg_end, pos_end = extreme_neighbors(syns, ants, model, scale=10, k=30)
-        # clean_neg = dedupe_word_list_strong(neg_end, model)
-        # clean_pos = dedupe_word_list_strong(pos_end, model)
+        neg_end, pos_end = extreme_neighbors(syns, ants, fasttext_model, scale=10, k=30)
+        # clean_neg = dedupe_word_list_strong(neg_end, fasttext_model)
+        # clean_pos = dedupe_word_list_strong(pos_end, fasttext_model)
         neg_end = [neg_word for neg_word, _ in neg_end]
         pos_end = [pos_word for pos_word, _ in pos_end]
         return neg_end, pos_end, found

@@ -1,4 +1,3 @@
-from tabulate import tabulate
 from pick_insult import pick_eval_insult
 import csv
 import os
@@ -17,7 +16,7 @@ import re
     # 2c. Concreteness / imagery: does the word evoke a clear mental image? dumb as carpet does, dumb as a ballast less so.         Y/N
     # 3. Preference: Which do you like best from the list?
 
-fields = ["insult", "scale", "ants_found", "model", "word", "Relevance", "Severity", "Humor", "Concreteness","Syn- antonym gen time","Syn- antonym cleaning time", "Comparator gen time","Comparator choose time"]
+fields = ["insult", "scale", "ants_found", "vec_model", "sys_ant_model", "projection_model", "word", "Relevance", "Severity", "Humor", "Concreteness","Syn- antonym gen time","Syn- antonym cleaning time", "Comparator gen time","Comparator choose time"]
 
 questions = [
     ("Relevance (scale 1-5): ", "int"),
@@ -38,9 +37,9 @@ EVAL_INSULTS = [
 ]
 
 # ---------------------- Evaluation CSV file functions ---------------------------------------
-def get_next_eval_filename(model, mode ,prefix="evaluation_log"):
+def get_next_eval_filename(vec_model, sys_ant_model, projection_model):
     """Creates filename if a new csv file must be added with icreased index"""
-    pattern = re.compile(rf"{prefix}(\d+)_{re.escape(model)}_{re.escape(mode)}\.csv")
+    pattern = re.compile(rf"evaluation_log(\d+)_{re.escape(vec_model)}_{re.escape(sys_ant_model)}_{re.escape(projection_model)}\.csv")
     max_num = 0
 
     for fname in os.listdir("."):
@@ -48,12 +47,12 @@ def get_next_eval_filename(model, mode ,prefix="evaluation_log"):
         if match:
             max_num = max(max_num, int(match.group(1)))
 
-    return f"{prefix}{max_num + 1}_{model}_{mode}.csv"
+    return f"evaluation_log{max_num + 1}_{vec_model}_{sys_ant_model}_{projection_model}.csv"
 
-def get_latest_eval_file(model, mode, prefix="evaluation_log"):
+def get_latest_eval_file(vec_model, sys_ant_model, projection_model):
     """Finds the most recent evalation CSV for a model
     This is important for resuming the latest evaluation instead of starting over"""
-    pattern = re.compile(rf"{prefix}(\d+)_{re.escape(model)}_{re.escape(mode)}\.csv")
+    pattern = re.compile(rf"evaluation_log(\d+)_{re.escape(vec_model)}_{re.escape(sys_ant_model)}_{re.escape(projection_model)}\.csv")
     files = []
 
     for fname in os.listdir("."):
@@ -79,19 +78,19 @@ def get_evaluated_insults(csv_file):
 
     return evaluated
 
-def get_eval_file_and_remaining_insults(model, mode):
-    latest_file = get_latest_eval_file(model, mode)
+def get_eval_file_and_remaining_insults(vec_model, sys_ant_model, projection_model):
+    latest_file = get_latest_eval_file(vec_model, sys_ant_model, projection_model)
 
     # No file yet -> start fresh
     if latest_file is None:
-        new_file = get_next_eval_filename(model, mode)
+        new_file = get_next_eval_filename(vec_model, sys_ant_model, projection_model)
         return new_file, EVAL_INSULTS
     
     evaluated = get_evaluated_insults(latest_file)
 
     # evaluation complete? -> start fresh
     if set(EVAL_INSULTS).issubset(evaluated):
-        new_file = get_next_eval_filename(model, mode)
+        new_file = get_next_eval_filename(vec_model, sys_ant_model, projection_model)
         return new_file, EVAL_INSULTS
     
     # Otherwise continue from left over insults
@@ -128,7 +127,7 @@ def get_input(prompt, input_type="int", min_val=1, max_val=5):
 
 
 # ---------------------------------- Run Evaluation -----------------------------------------
-def run_evaluation(ins, insult_scale, ants_found, model_name, worse_comparator_words, filename,syn_ant_speed,clean_syn_ant_speed,alt_words_speed,worse_comparator_speed):
+def run_evaluation(ins, insult_scale, ants_found, vec_model, sys_ant_model, projection_model, worse_comparator_words, filename,syn_ant_speed,clean_syn_ant_speed,alt_words_speed,worse_comparator_speed):
     file_exists = os.path.exists(filename)
 
     with open (filename, "a", newline="", encoding='utf-8') as f:
@@ -157,7 +156,9 @@ def run_evaluation(ins, insult_scale, ants_found, model_name, worse_comparator_w
                 "insult": ins,
                 "scale": insult_scale,
                 "ants_found": ants_found,
-                "model": model_name,
+                "vec_model": vec_model,
+                "sys_ant_model": sys_ant_model,
+                "projection_model": projection_model,
                 "word": word,
                 "Relevance": answers["Relevance (scale 1-5): "],
                 "Severity": answers["Severity (scale 1-5): "],
@@ -178,7 +179,8 @@ def run_evaluation(ins, insult_scale, ants_found, model_name, worse_comparator_w
             "insult": ins,
             "scale": insult_scale,
             "ants_found": ants_found,
-            "model": model_name,
+            "vec_model": vec_model,
+            "projection_model": projection_model,
             "word": favorite_word,
             "Relevance": "",
             "Severity": "",

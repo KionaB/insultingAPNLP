@@ -1,22 +1,18 @@
-#TODO: cleanup imports
-import logging
 import re
 import os
 os.environ["USE_TF"] = "0"
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
+import logging
 import numpy as np
 from sentence_transformers import SentenceTransformer
 from transformers.utils.logging import disable_progress_bar
 from tabulate import tabulate
 from sklearn.preprocessing import normalize
 from sklearn.decomposition import PCA
-import nltk
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import wordnet
-import random
 import pickle
 import torch
-import spacy
 from Levenshtein import distance as LSdis
 from syn_ant_generation import *
 from word_list_gen import *
@@ -47,9 +43,9 @@ def filter_worse_comparator_list(word_list, scale, similarity_threshold, max_wor
             continue
         if word_lemma in seen_lemmas:
             continue
-        # if LSdis(word, scale) <= similarity_threshold:
-        #     # skip if too similar to insult scale word
-        #     continue
+        if LSdis(word, scale) <= similarity_threshold:
+            # skip if too similar to insult scale word
+            continue
         filtered.append(word)
         seen_lemmas.add(word_lemma)
 
@@ -58,7 +54,7 @@ def filter_worse_comparator_list(word_list, scale, similarity_threshold, max_wor
             break
     return filtered
 
-def get_worse_comparator(syns, ants, insult_scale, words_for_comparator, pca_method=False, mid_adjust=False, vec_model='wordnet', similarity_threshold = 3, max_words = None):
+def get_worse_comparator(syns, ants, insult_scale, words_for_comparator, projection_model=False, mid_adjust=False, vec_model='wordnet', similarity_threshold = 3, max_words = None):
     """Gets a comparator and optional scale to compare on, generates a stronger comparator
     @:arg str comparator: the comparator to outdo
     @:arg str scale: the scale to outdo comparator on, optional, if not provided function will return a more negative word
@@ -66,10 +62,10 @@ def get_worse_comparator(syns, ants, insult_scale, words_for_comparator, pca_met
     
     disable_progress_bar()
     # print(syns, ants, words_for_comparator, method, pca)
-    if not pca_method:
-        worse_comparator, scores, dists = make_scale_list(syns, ants, words_for_comparator, vec_model)
-    else:
+    if projection_model == 'PCA':
         worse_comparator, scores, dists = pca(syns, ants, words_for_comparator)
+    else:
+        worse_comparator, scores, dists = make_scale_list(syns, ants, words_for_comparator, vec_model)
 
     if mid_adjust:
         normed_dists = (dists - np.min(dists)) / (np.max(dists) - np.min(dists))
@@ -79,29 +75,7 @@ def get_worse_comparator(syns, ants, insult_scale, words_for_comparator, pca_met
     filtered_worse_comparator = filter_worse_comparator_list(worse_comparator, insult_scale, similarity_threshold = similarity_threshold, max_words = max_words)
     return filtered_worse_comparator, scores
 
-# TODO make list option for words
-
-# def get_multiple_anchor_comparator(comparator: str, scale: str, method: bool):
-# def get_multiple_anchor_comparator(syns, ants, words_for_comparator, method: bool):
-#     """Gets comparator and scale, then uses Multiple_word_anchor.ipynb's method to generate a worse comparator based on synonyms and antonyms from nltk"""
-#     if method:
-#         comparator_list, scores = pca(list(set(syns)), list(set(ants)), list(set(words_for_comparator)))
-#     else:
-#         comparator_list, scores = make_scale_list(list(set(syns)), list(set(ants)), list(set(words_for_comparator)), vec_model)
-#     #TODO: make the index higher than current used word and make sure to not use already used words
-#     # index = random.randint(0, len(comparator_list)-1)
-#     return comparator_list, scores
-
-    # index = 0
-    # result = comparator_list[index]
-    # # print(result)
-    # if ".0" in result:
-    #     # filter out the wordnet variables to get just the word
-    #     for var in [".n.", ".v.", ".a.", ".s.", ".r."]:
-    #         result = result.replace(var, "")
-    #     result = re.sub(re.compile(r"[0-9]"), "", result)
-    #     # print(result)
-    # return re.sub("_", " ", result)  # add in spaces
+# TODO make list option for words (Nathan here, what does this todo mean?? I did not write this)
 
 
 # MULTIPLE_WORD_ANCHOR methods ---------------------------------------------------------
