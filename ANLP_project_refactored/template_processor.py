@@ -1,5 +1,6 @@
 import logging
 import re
+import random
 
 logger = logging.getLogger(__name__)
 
@@ -37,7 +38,7 @@ def get_insult_from_template(first_insult: str):
     return template, subject, insult_scale, comparator
 
 
-def comeback_builder_from_template(first_insult: str, template: int, subject: str, worse_comparator: str,
+def comeback_builder_from_template(syns, first_insult: str, template: int, subject: str, worse_comparator: str,
                                    insult_scale=" "):
     """Generates a return insult based on one of these templates:
      0: [X] are/is as [Y] as a [Z]
@@ -49,8 +50,7 @@ def comeback_builder_from_template(first_insult: str, template: int, subject: st
       str insult_scale (can be None): the scale on which the subject is compared
       :returns str comeback: the constructed return insult
      """
-    # Builds a comeback out of the given variables based on template first insult used
-
+    insult_scale = random.choice(syns)
     comeback = subject
     if template == 0:
         if " is as " in first_insult:

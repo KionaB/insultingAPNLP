@@ -27,14 +27,14 @@ lemmatizer = WordNetLemmatizer()
 model = SentenceTransformer("all-mpnet-base-v2")
 logger = logging.getLogger(__name__)
 
-def filter_worse_comparator_list(word_list, scale, similarity_threshold, max_words = None):
+def filter_worse_comparator_list(word_list, scale, similarity_threshold):
     """Filter the list of comparator words to remove duplicates and similar words."""
     filtered = []
     seen_lemmas = set()
     scale_lemma = lemmatizer.lemmatize(scale)
 
     for word in word_list:
-        if re.compile(r"(ness|ity|ism)$").search(word):
+        if re.compile(r"(ness|ity|ism|ing|tion|ment|hood|ship)$").search(word):
             # skip if word ends in -ness, -ity, or -ism
             continue
 
@@ -49,13 +49,10 @@ def filter_worse_comparator_list(word_list, scale, similarity_threshold, max_wor
             continue
         filtered.append(word)
         seen_lemmas.add(word_lemma)
-
-        if max_words is not None and len(filtered) >= max_words:
-            # Can be used to only look at the top words for speed purpose
-            break
+    print(filtered)
     return filtered
 
-def get_worse_comparator(syns, ants, insult_scale, words_for_comparator, projection_model=False, mid_adjust=False, vec_model='wordnet', similarity_threshold = 3, max_words = None):
+def get_worse_comparator(syns, ants, insult_scale, words_for_comparator, projection_model=False, mid_adjust=False, vec_model='wordnet', similarity_threshold = 2):
     """Gets a comparator and optional scale to compare on, generates a stronger comparator
     @:arg str comparator: the comparator to outdo
     @:arg str scale: the scale to outdo comparator on, optional, if not provided function will return a more negative word
@@ -73,7 +70,7 @@ def get_worse_comparator(syns, ants, insult_scale, words_for_comparator, project
         t_avg = np.mean(scores)
         scores = scores + (t_avg - scores) * normed_dists
     
-    filtered_worse_comparator = filter_worse_comparator_list(worse_comparator, insult_scale, similarity_threshold = similarity_threshold, max_words = max_words)
+    filtered_worse_comparator = filter_worse_comparator_list(worse_comparator, insult_scale, similarity_threshold = similarity_threshold)
     return filtered_worse_comparator, scores
 
 # TODO make list option for words (Nathan here, what does this todo mean?? I did not write this)

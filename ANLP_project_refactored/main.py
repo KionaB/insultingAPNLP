@@ -46,10 +46,10 @@ def generate_comeback(insult, vec_model, sys_ant_model, projection_model, fastte
     print('antonyms: ', ants)
     worse_comparator_words, scores = get_worse_comparator(syns, ants, insult_scale, words_for_comparator, 
                                                             projection_model=projection_model, mid_adjust=True, vec_model=vec_model, 
-                                                            similarity_threshold = 2, max_words = None) 
+                                                            similarity_threshold = 2) 
     worse_comparator = pick_insult(worse_comparator_words)
     logger.info("Increased step comparator: " + worse_comparator)
-    comeback = comeback_builder_from_template(insult, template, subject, worse_comparator, insult_scale)
+    comeback = comeback_builder_from_template(syns, insult, template, subject, worse_comparator, insult_scale)
     return comeback
 
 if __name__ == "__main__":
@@ -95,7 +95,7 @@ And finally, choosing which word ranked best overall:
                 worse_comp_start_time = timeit.default_timer()
                 worse_comparator_words, scores = get_worse_comparator(syns, ants, insult_scale, words_for_comparator, 
                                                             projection_model = projection_model, mid_adjust=True, vec_model = vec_model, 
-                                                            similarity_threshold = 2, max_words = None)
+                                                            similarity_threshold = 2)
                 worse_comp_end_time = timeit.default_timer()
                 logger.info('time to get alternative comparator words: ' + str(worse_comp_start_time-alt_words_start))
                 logger.info('time to get worse comparator scores: ' + str(worse_comp_end_time-worse_comp_start_time))
