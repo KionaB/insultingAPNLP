@@ -335,7 +335,7 @@
         <mxCell id="Ju6dtg48C039zHBS77PH-125" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Rank comparators based on scale" vertex="1">
           <mxGeometry height="60" width="120" x="1430" y="160" as="geometry" />
         </mxCell>
-        <mxCell id="Ju6dtg48C039zHBS77PH-128" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Template processing" vertex="1">
+        <mxCell id="Ju6dtg48C039zHBS77PH-128" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Template builder" vertex="1">
           <mxGeometry height="60" width="120" x="970" y="410" as="geometry" />
         </mxCell>
         <mxCell id="Ju6dtg48C039zHBS77PH-130" edge="1" parent="1" source="Ju6dtg48C039zHBS77PH-131" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="Ju6dtg48C039zHBS77PH-134" value="">
@@ -453,7 +453,7 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="Ju6dtg48C039zHBS77PH-148" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Template processing" vertex="1">
+        <mxCell id="Ju6dtg48C039zHBS77PH-148" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Template builder" vertex="1">
           <mxGeometry height="60" width="120" x="1200" y="810" as="geometry" />
         </mxCell>
         <mxCell id="Ju6dtg48C039zHBS77PH-150" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Take top 5 comparators" vertex="1">
