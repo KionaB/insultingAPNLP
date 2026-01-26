@@ -84,7 +84,7 @@ def winner_candidates(df_eval, df_fav):
             how="inner"
         )
         .query("word_x == word_y")
-        .groupby("insult_id")[["Relevance", "Severity", "Humor", "Concreteness"]]
+        .groupby("insult_id")[criteria]
         .mean()
         .rename(columns=lambda x: f"{x}_winner")
     )
@@ -101,7 +101,7 @@ def winner_percentile(df_eval, df_fav):
 
         winner = winner[0]
 
-        for metric in ["Relevance", "Severity", "Humor", "Concreteness"]:
+        for metric in criteria:
             scores = group[metric].dropna()
             winner_score = group.loc[group["word"] == winner, metric]
 
@@ -150,14 +150,14 @@ def top_selected_mean(df_eval):
     top_rows = df_eval.groupby("insult_id").first()
 
     # Compute mean across all insults
-    top_mean = top_rows[["Relevance", "Severity", "Humor"]].mean()
+    top_mean = top_rows[criteria].mean()
     top_mean.name = "Top_candidate_mean"
     return top_mean
 
 def annotator_bias(df_eval):
     return (
         df_eval
-        .groupby("person")[["Relevance", "Severity", "Humor"]]
+        .groupby("person")[criteria]
         .mean()
     )
 
@@ -166,7 +166,7 @@ df_eval = add_insult_id(df_eval)
 df_fav = add_insult_id(df_fav)
 
 # Candidate average (all 5 rows)
-cand_mean = df_eval.groupby("insult_id")[["Relevance", "Severity", "Humor"]].mean().mean()
+cand_mean = df_eval.groupby("insult_id")[criteria].mean().mean()
 print("Candidate mean (all candidates per insult):\n", cand_mean)
 
 # Top selected (by model itself)
