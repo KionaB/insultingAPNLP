@@ -1,0 +1,31 @@
+insult,scale,ants_found,vec_model,sys_ant_model,projection_model,word,Relevance,Severity,Humor,Concreteness,Syn- antonym gen time,Syn- antonym cleaning time,Comparator gen time,Comparator choose time
+You are as ugly as a troll,ugly,True,fasttext,extremes,PCA,partsong,1,1,1,n,146.1637550999876,0.030729199992492795,0.017043999978341162,3.6341048000613227
+You are as ugly as a troll,ugly,True,fasttext,extremes,PCA,firedrake,3,2,1,n,146.1637550999876,0.030729199992492795,0.017043999978341162,3.6341048000613227
+You are as ugly as a troll,ugly,True,fasttext,extremes,PCA,roc,3,2,1,y,146.1637550999876,0.030729199992492795,0.017043999978341162,3.6341048000613227
+You are as ugly as a troll,ugly,True,fasttext,extremes,PCA,Sphinx,2,1,1,y,146.1637550999876,0.030729199992492795,0.017043999978341162,3.6341048000613227
+You are as ugly as a troll,ugly,True,fasttext,extremes,PCA,Minotaur,4,3,2,y,146.1637550999876,0.030729199992492795,0.017043999978341162,3.6341048000613227
+You are as ugly as a troll,ugly,True,fasttext,,PCA,roc,,,,,146.1637550999876,0.030729199992492795,0.017043999978341162,3.6341048000613227
+You are as lazy as a sloth,lazy,True,fasttext,extremes,PCA,edentate,3,2,1,n,108.56077360000927,0.028176299994811416,0.018234999966807663,3.333201800007373
+You are as lazy as a sloth,lazy,True,fasttext,extremes,PCA,superbia,2,1,1,n,108.56077360000927,0.028176299994811416,0.018234999966807663,3.333201800007373
+You are as lazy as a sloth,lazy,True,fasttext,extremes,PCA,invidia,2,2,4,y,108.56077360000927,0.028176299994811416,0.018234999966807663,3.333201800007373
+You are as lazy as a sloth,lazy,True,fasttext,extremes,PCA,acedia,1,1,1,n,108.56077360000927,0.028176299994811416,0.018234999966807663,3.333201800007373
+You are as lazy as a sloth,lazy,True,fasttext,extremes,PCA,wrath,2,1,1,n,108.56077360000927,0.028176299994811416,0.018234999966807663,3.333201800007373
+You are as lazy as a sloth,lazy,True,fasttext,,PCA,invidia,,,,,108.56077360000927,0.028176299994811416,0.018234999966807663,3.333201800007373
+You are as slow as a snail,slow,True,fasttext,extremes,PCA,pemmican,2,1,1,n,88.11021049995907,0.027051700046285987,0.02145050000399351,3.4252416000235826
+You are as slow as a snail,slow,True,fasttext,extremes,PCA,mutton,2,1,2,y,88.11021049995907,0.027051700046285987,0.02145050000399351,3.4252416000235826
+You are as slow as a snail,slow,True,fasttext,extremes,PCA,aplacophoran,3,2,2,y,88.11021049995907,0.027051700046285987,0.02145050000399351,3.4252416000235826
+You are as slow as a snail,slow,True,fasttext,extremes,PCA,nudibranch,2,1,1,n,88.11021049995907,0.027051700046285987,0.02145050000399351,3.4252416000235826
+You are as slow as a snail,slow,True,fasttext,extremes,PCA,river limpet,2,2,1,y,88.11021049995907,0.027051700046285987,0.02145050000399351,3.4252416000235826
+You are as slow as a snail,slow,True,fasttext,,PCA,mutton,,,,,88.11021049995907,0.027051700046285987,0.02145050000399351,3.4252416000235826
+You are as annoying as a fly,annoying,True,fasttext,extremes,PCA,dipterous insect,3,2,1,y,79.47294050001074,0.054006599937565625,0.044822600088082254,3.93449359992519
+You are as annoying as a fly,annoying,True,fasttext,extremes,PCA,two-winged insects,3,2,1,y,79.47294050001074,0.054006599937565625,0.044822600088082254,3.93449359992519
+You are as annoying as a fly,annoying,True,fasttext,extremes,PCA,dipteron,2,1,1,n,79.47294050001074,0.054006599937565625,0.044822600088082254,3.93449359992519
+You are as annoying as a fly,annoying,True,fasttext,extremes,PCA,robber fly,4,2,2,y,79.47294050001074,0.054006599937565625,0.044822600088082254,3.93449359992519
+You are as annoying as a fly,annoying,True,fasttext,extremes,PCA,hippoboscid,2,1,1,n,79.47294050001074,0.054006599937565625,0.044822600088082254,3.93449359992519
+You are as annoying as a fly,annoying,True,fasttext,,PCA,robber fly,,,,,79.47294050001074,0.054006599937565625,0.044822600088082254,3.93449359992519
+You are as messy as a pig,messy,True,fasttext,extremes,PCA,squealer,2,1,1,n,91.50939340004697,0.14888449991121888,0.05143540003336966,6.5327026000013575
+You are as messy as a pig,messy,True,fasttext,extremes,PCA,razorback hog,3,2,1,y,91.50939340004697,0.14888449991121888,0.05143540003336966,6.5327026000013575
+You are as messy as a pig,messy,True,fasttext,extremes,PCA,warthog,3,4,2,y,91.50939340004697,0.14888449991121888,0.05143540003336966,6.5327026000013575
+You are as messy as a pig,messy,True,fasttext,extremes,PCA,bull,2,1,1,y,91.50939340004697,0.14888449991121888,0.05143540003336966,6.5327026000013575
+You are as messy as a pig,messy,True,fasttext,extremes,PCA,razorbacked hog,3,2,2,y,91.50939340004697,0.14888449991121888,0.05143540003336966,6.5327026000013575
+You are as messy as a pig,messy,True,fasttext,,PCA,warthog,,,,,91.50939340004697,0.14888449991121888,0.05143540003336966,6.5327026000013575
