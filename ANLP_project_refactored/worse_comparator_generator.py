@@ -49,7 +49,6 @@ def filter_worse_comparator_list(word_list, scale, similarity_threshold):
             continue
         filtered.append(word)
         seen_lemmas.add(word_lemma)
-    print(filtered)
     return filtered
 
 def get_worse_comparator(syns, ants, insult_scale, words_for_comparator, projection_model=False, mid_adjust=False, vec_model='wordnet', similarity_threshold = 2):

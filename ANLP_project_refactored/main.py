@@ -63,7 +63,6 @@ Welcome! This is the Human criteria evaluation model.
 There are a couple questions for each word that must be answered on a likert scale from 1-5.
 First, about how the word fits in the sentence as a whole:
     1a. Relevance: slow as a snail rather than slow as an apple
-    1b. Linguistic fit: Slow as a snail rather than slow as a deaccelartion
 Second, the impact of the word itself:
     2a. perceived severity / insult strength: Dumb as a dead body is harsh, while dumb as a carpet is very tame
     2b. Humor / cleverness: Dumb as a dead body is rather morbid, while dumb as a carpet is unintentionally funny
