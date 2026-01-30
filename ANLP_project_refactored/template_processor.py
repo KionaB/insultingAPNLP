@@ -50,7 +50,10 @@ def comeback_builder_from_template(syns, first_insult: str, template: int, subje
       str insult_scale (can be None): the scale on which the subject is compared
       :returns str comeback: the constructed return insult
      """
-    insult_scale = random.choice(syns)
+    new_insult = random.choice(syns)
+    if insult_scale != new_insult:
+        insult_scale = new_insult
+        
     comeback = subject
     if template == 0:
         if " is as " in first_insult:
