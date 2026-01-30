@@ -8,7 +8,8 @@ def get_scale_syns_and_opposites(scale: str, fasttext_model, mode='wordnet'):
     @returns list of synonyms and list of antonyms"""
     
     def find_syn_ant_soft(scale, fasttext_model, num_neighbours=10):
-        neighbours = [w for _, w in fasttext_model.get_nearest_neighbors(scale, num_neighbours)]
+        neighbours = [scale]+[w for _, w in fasttext_model.get_nearest_neighbors(scale, num_neighbours)]
+        print(scale, neighbours, scale in neighbours)
         antonyms = []
         synonyms = []
         for nb in neighbours:
@@ -17,6 +18,9 @@ def get_scale_syns_and_opposites(scale: str, fasttext_model, mode='wordnet'):
                     synonyms.append(lemma.name())
                     for ant in lemma.antonyms():
                         antonyms.append(ant.name())
+                    # for ant in lemma.antonyms():
+                    #     for syn_ant in ant.synset().lemmas():
+                    #         antonyms.append(syn_ant.name())
         if not antonyms:
             return synonyms, ['amazing', 'cool', 'smart'], False  # no antonym found
         else:
@@ -32,6 +36,9 @@ def get_scale_syns_and_opposites(scale: str, fasttext_model, mode='wordnet'):
                 synonyms.append(l.name())
                 if l.antonyms():
                     antonyms.append(l.antonyms()[0].name())
+                # for ant in l.antonyms():
+                #     for syn_ant in ant.synset().lemmas():
+                #         antonyms.append(syn_ant.name())
         antonyms = list(set(antonyms)) # Remove duplicates
         if not antonyms:
             ants_found = False
