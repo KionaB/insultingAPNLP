@@ -21,16 +21,13 @@ fasttext.util.download_model('en', if_exists='ignore')
 fasttext_model = fasttext.load_model('cc.en.300.bin')
 
 eval_settings = ( #eval settings looks like [vec_model, sys_ant_model, projection_model]
-    ('wordnet',  'wordnet', 'norm'),    # 1. hesitancy  2. reluctance   3. disinclination   4. overeating   5. avaritia
-    ('fasttext', 'fasttext', 'norm'),   # 1. leviathan  2. trolling     3. Typhon           4. hellhound    5. Typhoeus
-    ('fasttext', 'extremes', 'norm'),   # 1. trolling   2. wolfman      3. Typhon           4. lycanthrope  5. leviathan
-    ('wordnet',  'wordnet', 'PCA'),     # 1. salamander 2. hellhound    3. mantichora       4. werewolf     5. leviathan
-    ('fasttext', 'fasttext', 'PCA'),    # 1. firedrake  2. partsong     3. fly              4. Geryon       5. fisherman's lure
-    ('fasttext', 'extremes', 'PCA'),    # 1. partsong   2. fly-fishing  3. firedrake        4. roc          5. Sphinx
+    ('fasttext', 'fasttext', 'norm'),
+    ('fasttext', 'fasttext', 'PCA'),
+    ('fasttext', 'extremes', 'norm'),
+    ('fasttext', 'extremes', 'PCA')
+    ('wordnet',  'wordnet', 'norm'),
+    ('wordnet',  'wordnet', 'PCA'),
 )
-
-#TODO: Create statistics for the final evaluation csv file  Nathan
-#TODO: result must pick random synonym to make it more 'creative'
 
 def generate_comeback(insult, vec_model, sys_ant_model, projection_model, fasttext_model):
     """generate a comeback for any given insult"""
@@ -42,8 +39,8 @@ def generate_comeback(insult, vec_model, sys_ant_model, projection_model, fastte
     if not ants_found:
         logger.warning('No antonyms found for scale ' + str(insult_scale))
     words_for_comparator = get_close(comparator)
-    print('synonyms: ', syns)
-    print('antonyms: ', ants)
+    # print('synonyms: ', syns)
+    # print('antonyms: ', ants)
     worse_comparator_words, scores = get_worse_comparator(syns, ants, insult_scale, words_for_comparator, 
                                                             projection_model=projection_model, mid_adjust=True, vec_model=vec_model, 
                                                             similarity_threshold = 2) 
@@ -83,8 +80,8 @@ And finally, choosing which word ranked best overall:
                 clean_time_end = timeit.default_timer()
                 logger.info('time to get syns and ants'+str(syns_ants_time_end-syns_ants_time_start))
                 logger.info('time to clean syns and ants'+str(clean_time_end-syns_ants_time_end))
-                print('synonyms: ', syns)
-                print('antonyms: ', ants)
+                # print('synonyms: ', syns)
+                # print('antonyms: ', ants)
                 if insult_scale is None:
                     insult_scale = "terrible"
                 if not ants_found:
@@ -113,11 +110,11 @@ And finally, choosing which word ranked best overall:
                 break
     elif self_battle:
         insult = input(
-                "Write The first insult: "
                 "\nTemplates: "
                 "\n{[X] are/is as [Y] as a [Z]} "
                 "\n{[X] are/is a [Y]} "
                 "\nOR type \"exit\" to exit\n"
+                "Write The first insult: "
             )
         for num in range(1, NUM_ROUNDS+1):
             comeback = generate_comeback(insult,vec_model, sys_ant_model, projection_model, fasttext_model)

@@ -2,6 +2,9 @@ import pandas as pd
 from pathlib import Path
 import re
 
+# Kijk naar variatie binen evaluatie + welke/hoeveel woorden wij het met elkaar over eens zijn (within subject variation)
+# Algemene metric met relevance + severity + Humor + Concreteness
+
 BASE_DIR = Path("ANLP_project_refactored\EVAL_folder")
 
 criteria = ["Relevance", "Severity", "Humor", "Concreteness"]
